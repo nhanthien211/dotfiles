@@ -7,11 +7,11 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
-  spec = {
-    { "LazyVim/LazyVim" },
-    { import = "plugins" },
-    { import = "plugins.ui" },
-    { import = "plugins.explorer" },
-    { import = "plugins.coding" }
-  }
+	spec = {
+		{ "LazyVim/LazyVim" },
+		{ import = "plugins" },
+		{ import = "plugins.ui" },
+		{ import = "plugins.editor" },
+		{ import = "plugins.coding" },
+	},
 })

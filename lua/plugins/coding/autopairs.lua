@@ -4,4 +4,9 @@ return {
 		event = "InsertEnter",
 		config = true,
 	},
+
+	{
+		"echasnovski/mini.surround",
+		version = false,
+	},
 }
