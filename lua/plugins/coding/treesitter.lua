@@ -14,6 +14,8 @@ return {
 				"tsx",
 				"typescript",
 				"yaml",
+				"css",
+				"scss",
 			},
 			highlight = { enable = true },
 			indent = { enable = true },
