@@ -11,8 +11,14 @@ return {
 		},
 		config = function()
 			require("telescope").load_extension("fzf")
-			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find files" })
+
+			require("telescope").setup({
+				pickers = {
+					colorscheme = {
+						enable_preview = true,
+					},
+				},
+			})
 		end,
 	},
 
