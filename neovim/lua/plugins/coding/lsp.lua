@@ -1,6 +1,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		dependencies = {},
 		lazy = false,
 		config = function()
 			require("mason").setup({
@@ -10,6 +11,16 @@ return {
 						package_pending = "➜",
 						package_uninstalled = "✗",
 					},
+				},
+			})
+		end,
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					"eslint_d",
 				},
 			})
 		end,
@@ -41,9 +52,9 @@ return {
 			--
 			local lspconfig = require("lspconfig")
 
-			-- lspconfig.tsserver.setup({
-			--   capabilities = capabilities
-			-- })
+			lspconfig.tsserver.setup({
+				capabilities = capabilities,
+			})
 			-- lspconfig.html.setup({
 			--   capabilities = capabilities
 			-- })
