@@ -20,7 +20,11 @@ return {
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
+					-- linter
 					"eslint_d",
+					"yamllint",
+					-- formatter
+					"prettierd",
 				},
 			})
 		end,
@@ -40,6 +44,7 @@ return {
 					"jsonls",
 					"tsserver",
 					"eslint",
+					"yamlls",
 				},
 			})
 		end,
@@ -58,6 +63,10 @@ return {
 			-- lspconfig.html.setup({
 			--   capabilities = capabilities
 			-- })
+			lspconfig.yamlls.setup({
+				capabilities = capabilities,
+			})
+
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				settings = {

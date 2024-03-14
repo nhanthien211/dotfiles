@@ -11,6 +11,7 @@ return {
 				typescript = { "eslint_d" },
 				javascriptreact = { "eslint_d" },
 				typescriptreact = { "eslint_d" },
+				yaml = { "yamllint" },
 			},
 			linters = {
 				eslint_d = {
