@@ -6,7 +6,7 @@ map("n", "<C-s>", ":w<CR>", silent)
 map("i", "<C-s>", "<ESC>:w<CR>a", silent)
 
 -- Notify
-map({ "n", "v", "i" }, "<leader>un", function()
+map({ "n", "v" }, "<leader>un", function()
 	require("notify").dismiss(silent)
 end, { desc = "Dimiss all notifcation" })
 
