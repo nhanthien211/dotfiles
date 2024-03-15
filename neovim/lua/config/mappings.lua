@@ -5,6 +5,11 @@ local silent = { silent = true }
 map("n", "<C-s>", ":w<CR>", silent)
 map("i", "<C-s>", "<ESC>:w<CR>a", silent)
 
+-- Notify
+map({ "n", "v", "i" }, "<leader>un", function()
+	require("notify").dismiss(silent)
+end, { desc = "Dimiss all notifcation" })
+
 -- comment
 map("i", "<c-/>", function()
 	require("Comment.api").toggle.linewise.current()

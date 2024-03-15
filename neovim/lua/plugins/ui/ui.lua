@@ -1,39 +1,5 @@
 return {
 
-	--Noice.nvim
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {},
-		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-	},
-
-	--Notify.nvim
-	{
-		"rcarriga/nvim-notify",
-		event = "VeryLazy",
-		config = function()
-			require("notify").setup({
-				background_colour = "#00000",
-			})
-		end,
-	},
-
-	-- Plugin for tab ui
-	{
-		"akinsho/bufferline.nvim",
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			vim.opt.termguicolors = true
-			require("bufferline").setup({})
-		end,
-	},
-
 	{
 		"stevearc/dressing.nvim",
 		opts = {},
