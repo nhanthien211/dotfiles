@@ -3,13 +3,13 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
+		lazy = false,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"famiu/bufdelete.nvim",
 		},
 		opts = {
 			options = {
-
 				numbers = "ordinal",
 				enforce_regular_tabs = false,
 				middle_mouse_command = function(bufnum)
