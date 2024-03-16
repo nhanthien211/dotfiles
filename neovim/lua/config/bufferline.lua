@@ -11,11 +11,14 @@ local mappings = {
 		name = "bufferline",
 		p = { "<Cmd>BufferLineTogglePin<CR>", "Toggle tab pin" },
 		c = {
-			name = "bufferline delete",
-			o = { "<Cmd>BufferLineCloseOthers<CR>", "Close other tab" },
-			r = { "<Cmd>BufferLineCloseRight<CR>", "Close right tab" },
-			l = { "<Cmd>BufferLineCloseLeft<CR>", "Close left tab" },
+			function()
+				require("bufdelete").bufdelete(0, true)
+			end,
+			"Close buffer",
 		},
+		o = { "<Cmd>BufferLineCloseOthers<CR>", "Close other tab" },
+		r = { "<Cmd>BufferLineCloseRight<CR>", "Close right tab" },
+		l = { "<Cmd>BufferLineCloseLeft<CR>", "Close left tab" },
 	},
 	["1"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "Go to tab 1" },
 	["2"] = { "<Cmd>BufferLineGoToBuffer 2<CR>", "Go to tab 2" },
@@ -26,8 +29,16 @@ local mappings = {
 	["7"] = { "<Cmd>BufferLineGoToBuffer 7<CR>", "Go to tab 7" },
 	["8"] = { "<Cmd>BufferLineGoToBuffer 8<CR>", "Go to tab 8" },
 	["9"] = { "<Cmd>BufferLineGoToBuffer 9<CR>", "Go to tab 9" },
-	-- ["<Tab>"] = { "<Cmd>BufferLineCycleNext<CR>", "Next tab" },
-	-- ["<S-Tab>"] = { "<Cmd>BufferLineCyclePrev<CR>", "Previous tab" },
 }
 
+local extra_opts = {
+	mode = "n",
+	silent = true,
+}
+
+local extra_mappings = {
+	["<Tab>"] = { "<Cmd>BufferLineCycleNext<CR>", "Next tab" },
+	["<S-Tab>"] = { "<Cmd>BufferLineCyclePrev<CR>", "Previous tab" },
+}
 wk.register(mappings, opts)
+wk.register(extra_mappings, extra_opts)

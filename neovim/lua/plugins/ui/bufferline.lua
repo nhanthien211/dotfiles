@@ -10,7 +10,6 @@ return {
 		},
 		opts = {
 			options = {
-				numbers = "ordinal",
 				enforce_regular_tabs = false,
 				middle_mouse_command = function(bufnum)
 					require("bufdelete").bufdelete(bufnum, true)
