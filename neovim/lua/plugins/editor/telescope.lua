@@ -11,11 +11,18 @@ return {
 		},
 		config = function()
 			require("telescope").load_extension("fzf")
-
+			local actions = require("telescope.actions")
 			require("telescope").setup({
 				pickers = {
 					colorscheme = {
 						enable_preview = true,
+					},
+				},
+				defaults = {
+					mappings = {
+						i = {
+							["<esc>"] = actions.close,
+						},
 					},
 				},
 			})

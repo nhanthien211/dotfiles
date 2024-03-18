@@ -10,24 +10,6 @@ map({ "n", "v" }, "<leader>un", function()
 	require("notify").dismiss(silent)
 end, { desc = "Dimiss all notifcation" })
 
--- comment
-map("i", "<c-/>", function()
-	require("Comment.api").toggle.linewise.current()
-end, { remap = true, desc = "Comment toggle" })
-
-map(
-	"v",
-	"<c-/>",
-	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-	{ remap = true, desc = "Comment Toggle" }
-)
-
--- telescope
-local telescope_builtin = require("telescope.builtin")
-map("n", "<leader>ff", telescope_builtin.find_files, { desc = "find files" })
-map("n", "<leader>fw", telescope_builtin.live_grep, { desc = "live grep" })
-map("n", "<leader>fc", telescope_builtin.colorscheme, { desc = "change theme" })
-
 -- linting
 map("n", "<leader>l", function()
 	require("lint").try_lint()
