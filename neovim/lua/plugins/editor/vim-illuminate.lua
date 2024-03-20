@@ -1,7 +1,7 @@
 return {
 	{
 		"RRethy/vim-illuminate",
-		event = "VeryLazy",
+    lazy = true,
 		opts = {
 			delay = 200,
 			large_file_cutoff = 2000,

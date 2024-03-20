@@ -2,7 +2,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		dependencies = {},
-		lazy = false,
+	  event = "VeryLazy",
 		config = function()
 			require("mason").setup({
 				ui = {
@@ -18,6 +18,7 @@ return {
 
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "VeryLazy",
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
@@ -33,7 +34,7 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
+	  event = "VeryLazy",
 		opts = {
 			auto_install = true,
 		},
@@ -54,7 +55,7 @@ return {
 
 	{
 		"neovim/nvim-lspconfig",
-		lazy = false,
+		event = "VeryLazy",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			--
@@ -85,6 +86,7 @@ return {
 
 	{
 		"smjonas/inc-rename.nvim",
+    event = "VeryLazy",
 		config = function()
 			require("inc_rename").setup()
 		end,

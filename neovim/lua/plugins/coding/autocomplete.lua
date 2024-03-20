@@ -1,7 +1,8 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		lazy = true,
+    event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp", -- integration with lsp config
 			"hrsh7th/cmp-buffer", -- source for text in buffer

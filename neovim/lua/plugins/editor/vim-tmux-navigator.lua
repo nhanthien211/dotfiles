@@ -1,8 +1,8 @@
 return {
 	{
 		"christoomey/vim-tmux-navigator",
-		lazy = false,
-		cmd = {
+		lazy = true,
+    cmd = {
 			"TmuxNavigateLeft",
 			"TmuxNavigateDown",
 			"TmuxNavigateUp",

@@ -1,9 +1,8 @@
 return {
-
-	{
-		"stevearc/dressing.nvim",
-		opts = {},
-	},
+  {
+    "folke/todo-comments.nvim",
+    lazy = true
+  },
 
 	-- lualine.nvim: plugin for vim status bar
 	{

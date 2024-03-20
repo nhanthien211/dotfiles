@@ -1,7 +1,9 @@
 return {
 	{
 		"folke/trouble.nvim",
-		opts = {
+		lazy = true,
+    event = "VeryLazy",
+    opts = {
 			use_diagnostic_signs = true,
 			auto_close = true,
 			auto_fold = true,
@@ -10,7 +12,7 @@ return {
 			action_keys = { -- key mappings for actions in the trouble list
 				-- map to {} to remove a mapping, for example:
 				-- close = {},
-				close = { "q", "<esc>"}, -- close the list
+				close = { "q", "<esc>" }, -- close the list
 				cancel = {}, -- cancel the preview and get back to your last window / buffer / cursor
 				refresh = "r", -- manually refresh
 				jump = { "<cr>", "<tab>", "<2-leftmouse>" }, -- jump to the diagnostic or open / close folds
@@ -28,7 +30,7 @@ return {
 				open_folds = { "zR", "zr" }, -- open all folds
 				toggle_fold = { "zA", "za" }, -- toggle fold of current file
 				previous = "k", -- previous item
-				next = "j", -- next item 
+				next = "j", -- next item
 				help = "?", -- help menu
 			},
 		},
