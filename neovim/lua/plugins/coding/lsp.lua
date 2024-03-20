@@ -15,6 +15,7 @@ return {
 			})
 		end,
 	},
+
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		config = function()
@@ -29,6 +30,7 @@ return {
 			})
 		end,
 	},
+
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
@@ -49,6 +51,7 @@ return {
 			})
 		end,
 	},
+
 	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
@@ -77,10 +80,13 @@ return {
 					},
 				},
 			})
+		end,
+	},
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup()
 		end,
 	},
 }

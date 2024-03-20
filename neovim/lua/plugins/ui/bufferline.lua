@@ -33,17 +33,18 @@ return {
 						separator = true,
 					},
 				},
-				diagnostics = "nvim_lsp",
-				diagnostics_update_in_insert = false,
-				diagnostics_indicator = function(_, _, diagnostics_dict)
-					local icons = require("config.icons").diagnostics
-					local s = ""
-					for e, n in pairs(diagnostics_dict) do
-						local sym = e == "error" and icons.error or (e == "warning" and icons.warning or icons.hint)
-						s = s .. n .. " " .. sym
-					end
-					return s
-				end,
+        -- ENABLE TO HAVE LSP DIAGNOSTICS ON TAB
+				-- diagnostics = "nvim_lsp",
+				-- diagnostics_update_in_insert = false,
+				-- diagnostics_indicator = function(_, _, diagnostics_dict)
+				-- 	local icons = require("config.icons").diagnostics
+				-- 	local s = ""
+				-- 	for e, n in pairs(diagnostics_dict) do
+				-- 		local sym = e == "error" and icons.error or (e == "warning" and icons.warning or icons.hint)
+				-- 		s = s .. n .. " " .. sym
+				-- 	end
+				-- 	return s
+				-- end,
 			},
 		},
 		config = function(_, opts)

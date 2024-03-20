@@ -50,6 +50,9 @@ local mappings = {
 			vim.lsp.codelens.refresh,
 			"Refresh and run code lense",
 		},
+
+		-- Rename
+		r = { ":IncRename ", "Rename" },
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },

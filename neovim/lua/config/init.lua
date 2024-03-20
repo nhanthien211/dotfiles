@@ -8,3 +8,6 @@ require("config.bufferline")
 require("config.telescope")
 require("config.comment")
 require("config.general")
+
+-- Extra settings
+require("config.lsp")
