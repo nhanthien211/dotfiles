@@ -1,7 +1,7 @@
 local wk = require("which-key")
 
 local opts = {
-	mode = { "n", "v" },
+	mode = "n",
 	prefix = "<leader>",
 	silent = true,
 }
@@ -53,6 +53,9 @@ local mappings = {
 
 		-- Rename
 		r = { ":IncRename ", "Rename" },
+
+    -- Trouble
+    t = { "<cmd>TroubleToggle<cr>", "Toggle issues" },
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },

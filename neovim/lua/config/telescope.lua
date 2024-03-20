@@ -12,8 +12,11 @@ local mappings = {
 		f = { "<Cmd>Telescope find_files<CR>", "Find files" },
 		w = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
 		c = { "<Cmd>Telescope colorscheme<CR>", "Change theme" },
-		n = { ":Noice telescope", "View Noice message" },
-		t = { ":TodoTelescope", "View todo" },
+		r = { "<Cmd>Telescope lsp_references<CR>", "View reference" },
+
+    -- Telescope plugins
+		n = { "<Cmd>Noice telescope<CR>", "View Noice message" },
+		t = { "<Cmd>TodoTelescope<CR>", "View todo" },
 	},
 }
 

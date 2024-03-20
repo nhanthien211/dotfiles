@@ -1,7 +1,10 @@
 return {
   {
     "folke/todo-comments.nvim",
-    lazy = true
+    event = "VeryLazy",
+    config = function ()
+      require("todo-comments").setup()
+    end
   },
 
 	-- lualine.nvim: plugin for vim status bar
