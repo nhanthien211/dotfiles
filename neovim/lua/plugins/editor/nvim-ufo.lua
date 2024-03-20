@@ -2,7 +2,6 @@ return {
 	-- UFO folding
 	{
 		"kevinhwang91/nvim-ufo",
-    lazy = true,
 		dependencies = {
 			"kevinhwang91/promise-async",
 			{
@@ -26,7 +25,6 @@ return {
 				return { "treesitter", "indent" }
 			end,
 		},
-
 		init = function()
 			vim.keymap.set("n", "zR", function()
 				require("ufo").openAllFolds()

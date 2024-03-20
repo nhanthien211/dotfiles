@@ -1,11 +1,16 @@
 return {
-  {
-    "folke/todo-comments.nvim",
-    event = "VeryLazy",
-    config = function ()
-      require("todo-comments").setup()
-    end
-  },
+	{
+		"stevearc/dressing.nvim",
+		opts = {},
+	},
+
+	{
+		"folke/todo-comments.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("todo-comments").setup()
+		end,
+	},
 
 	-- lualine.nvim: plugin for vim status bar
 	{

@@ -20,6 +20,12 @@ local mappings = {
 		r = { "<Cmd>BufferLineCloseRight<CR>", "Close right tab" },
 		l = { "<Cmd>BufferLineCloseLeft<CR>", "Close left tab" },
 	},
+	w = {
+		function()
+			require("bufdelete").bufdelete(0, true)
+		end,
+		"Close buffer",
+	},
 	["1"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "Go to tab 1" },
 	["2"] = { "<Cmd>BufferLineGoToBuffer 2<CR>", "Go to tab 2" },
 	["3"] = { "<Cmd>BufferLineGoToBuffer 3<CR>", "Go to tab 3" },
