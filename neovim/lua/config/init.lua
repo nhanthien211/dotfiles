@@ -1,7 +1,8 @@
 -- default
-require("config.options")
-require("config.lazy")
-require("config.mappings")
+require("config.default.options")
+require("config.default.lazy")
+require("config.default.mappings")
+require("config.default.autocommands")
 
 -- Mapping
 require("config.bufferline")
