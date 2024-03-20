@@ -28,7 +28,6 @@ for i, kind in ipairs(kinds) do
 	kinds[i] = completion_icons[kind] or kind
 end
 
-
 -- TODO: move all client_capabilities to separate config
 -- config = function()
 		-- 	local capabilities = vim.lsp.protocol.make_client_capabilities()

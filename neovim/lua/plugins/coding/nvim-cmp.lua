@@ -2,7 +2,7 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		lazy = true,
-    event = "InsertEnter",
+		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp", -- integration with lsp config
 			"hrsh7th/cmp-buffer", -- source for text in buffer
@@ -16,6 +16,17 @@ return {
 
 			local luasnip = require("luasnip")
 
+			local border = {
+				{ "╭", "CmpBorder" },
+				{ "─", "CmpBorder" },
+				{ "╮", "CmpBorder" },
+				{ "│", "CmpBorder" },
+				{ "╯", "CmpBorder" },
+				{ "─", "CmpBorder" },
+				{ "╰", "CmpBorder" },
+				{ "│", "CmpBorder" },
+			}
+
 			require("luasnip.loaders.from_vscode").lazy_load()
 			cmp.setup({
 				completion = {
@@ -27,8 +38,20 @@ return {
 					end,
 				},
 				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
+					completion = {
+						border = border,
+					},
+					documentation = {
+						border = border,
+					},
+				},
+				-- formatting icons
+				formatting = {
+					format = function(_, vim_item)
+						local icons = require("config.icons").lsp_completions
+						vim_item.kind = (icons[vim_item.kind] or "") .. vim_item.kind
+						return vim_item
+					end,
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
