@@ -45,6 +45,32 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 -- LSP and CMP integration
+local lspToMasonMap = {
+	lua_ls = "lua-language-server",
+	html = "html",
+	cssls = "css",
+	jsonls = "json",
+	tsserver = "typescript-language-server",
+	eslint = "eslint_ls",
+	yamlls = "yaml_ls",
+}
+
+local serverConfigs = {}
+for lspName, _ in pairs(lspToMasonMap) do
+	serverConfigs[lspName] = {}
+end
+
+serverConfigs.lua_ls = {
+  settings = {
+    Lua = {
+      diagnostics = {
+				globals = { "vim" }, -- when contributing to nvim plugins missing a `.luarc.json`
+				disable = { "trailing-space" }, -- formatter already does that
+			},
+    }
+  }
+}
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local lspconfig = require("lspconfig")
 
@@ -56,25 +82,9 @@ capabilities.textDocument.foldingRange = {
 	lineFoldingOnly = true,
 }
 
-local language_servers = require("lspconfig").util.available_servers()
-
-for _, ls in ipairs(language_servers) do
-	if ls == "lua_ls" then
-		lspconfig.lua_ls.setup({
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-				},
-			},
-		})
-	else
-		lspconfig[ls].setup({
-			capabilities = capabilities,
-		})
-	end
+for lsp, serverConfig in pairs(serverConfigs) do
+  serverConfig.capabilities = capabilities
+  lspconfig[lsp].setup(serverConfig)
 end
 
 -------------------------------------------------------------------------------------------------------------------

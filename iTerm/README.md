@@ -52,3 +52,4 @@ Note: see https://coderwall.com/p/pb1uzq/z-shell-colors for more background colo
 - Remove limit for branch name:
   - `nvim ~/.p10k.zsh`
   -`(( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line`
+- Send key guide to fix some key mapping via terminal setting: https://stackoverflow.com/questions/16359878/how-to-map-shift-enter 

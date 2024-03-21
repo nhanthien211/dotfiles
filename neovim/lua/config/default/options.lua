@@ -20,7 +20,7 @@ local options = {
 	scrolloff = 8, --- Always keep space when scrolling to bottom/top edge
 	shiftwidth = 2, --- Change a number of space characters inserted for indentation
 	showtabline = 2, --- Always show tabs
-	signcolumn = "yes:2", --- Add extra sign column next to line number
+	signcolumn = "yes:1", --- Add extra sign column next to line number
 	smartcase = true, --- Uses case in search
 	smartindent = true, --- Makes indenting smart
 	smarttab = true, --- Makes tabbing smarter will realize you have 2 vs 4
@@ -34,7 +34,7 @@ local options = {
 	updatetime = 100, --- Faster completion
 	viminfo = "'1000", --- Increase the size of file history
 	wildignore = "*node_modules/**", --- Don't search inside Node.js modules (works for gutentag)
-	wrap = false, --- Display long lines as just one line
+	wrap = true, --- Display long lines as just one line
 	writebackup = false, --- Not needed
 	-- Neovim defaults
 	autoindent = true, --- Good auto indent
