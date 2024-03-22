@@ -6,7 +6,6 @@ local opts = {
 	silent = true,
 }
 
-
 local mappings = {
 	c = {
 		name = "Code action",
@@ -43,14 +42,24 @@ local mappings = {
 		c = { vim.lsp.codelens.run, "Run code lense" },
 		C = { vim.lsp.codelens.refresh, "Refresh and run code lense" },
 		h = { vim.lsp.buf.hover, "Hover" },
-    d = { vim.lsp.buf.definition, "Go to definition"},
-    D = { vim.lsp.buf.declaration, "Go to declaration" },
+		s = { vim.lsp.buf.signature_help, "Signature help" },
 
 		-- Rename
 		r = { ":IncRename ", "Rename" },
 
 		-- Trouble
-		t = { "<cmd>TroubleToggle<cr>", "Toggle issues" },
+		i = { "<cmd>TroubleToggle<cr>", "Toggle issues" },
+	},
+	g = {
+		-- LSP
+		d = { vim.lsp.buf.definition, "Go to definition" },
+		D = { vim.lsp.buf.declaration, "Go to declaration" },
+		i = { vim.lsp.buf.implementation, "Go to implementation" },
+		r = { "<Cmd>TroubleToggle lsp_references<CR>", "Go to reference" },
+
+		-- Git
+		b = { ":Gitsigns toggle_current_line_blame<CR>", "Git blame toggle" },
+		p = { ":Gitsigns preview_hunk<CR>", "Git preview hunk" },
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },

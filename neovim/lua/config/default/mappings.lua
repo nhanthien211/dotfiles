@@ -14,11 +14,11 @@ map("n", "]<Leader>", ":set paste<CR>m`o<Esc>``:set nopaste<CR>", { silent = tru
 map("n", "[<Leader>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silent = true, desc = "Newline" })
 
 -- Move line
-map("n", "<S-j>", "<cmd>move-2<CR>==", { silent = true, desc = "Move line up" })
-map("n", "<S-k>", "<cmd>move+<CR>==", { silent = true, desc = "Move line down" })
+map("n", "<S-k>", "<cmd>move-2<CR>==", { silent = true, desc = "Move line up" })
+map("n", "<S-j>", "<cmd>move+<CR>==", { silent = true, desc = "Move line down" })
 
-map("v", "<S-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<S-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("v", "<S-k>", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move line up" })
+map("v", "<S-j>", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move line down" })
 
 -- Easy select text in edit mode
 map("i", "<S-Up>", "<left><C-o>vk", silent)
