@@ -1,3 +1,15 @@
+-- This is to enable float border
+local border = {
+	{ "┌", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "┐", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "┘", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "└", "FloatBorder" },
+	{ "│", "FloatBorder" },
+}
+
 -------------------------------------------------------------------------------------------------------------------
 
 -- change lsp icons
@@ -18,6 +30,7 @@ vim.diagnostic.config({
 	virtual_text = {
 		prefix = "●",
 	},
+	float = { border = border },
 })
 
 -------------------------------------------------------------------------------------------------------------------
@@ -50,7 +63,7 @@ local lspToMasonMap = {
 	html = "html",
 	cssls = "css",
 	jsonls = "json",
-	-- tsserver = "typescript-language-server",
+	["typescript-tools"] = "typescript-language-server",
 	eslint = "eslint_ls",
 	yamlls = "yaml_ls",
 }
@@ -61,14 +74,14 @@ for lspName, _ in pairs(lspToMasonMap) do
 end
 
 serverConfigs.lua_ls = {
-  settings = {
-    Lua = {
-      diagnostics = {
+	settings = {
+		Lua = {
+			diagnostics = {
 				globals = { "vim" }, -- when contributing to nvim plugins missing a `.luarc.json`
 				disable = { "trailing-space" }, -- formatter already does that
 			},
-    }
-  }
+		},
+	},
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -82,9 +95,16 @@ capabilities.textDocument.foldingRange = {
 	lineFoldingOnly = true,
 }
 
+-- LSP settings (for overriding per client)
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+
 for lsp, serverConfig in pairs(serverConfigs) do
-  serverConfig.capabilities = capabilities
-  lspconfig[lsp].setup(serverConfig)
+	serverConfig.capabilities = capabilities
+  serverConfig.handlers = handlers
+	lspconfig[lsp].setup(serverConfig)
 end
 
 -------------------------------------------------------------------------------------------------------------------

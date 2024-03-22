@@ -6,9 +6,6 @@ local opts = {
 	silent = true,
 }
 
--- TODO: move to keybindings
--- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 
 local mappings = {
 	c = {
@@ -42,24 +39,18 @@ local mappings = {
 		},
 
 		-- LSP related
-		a = {
-			vim.lsp.buf.code_action,
-			"Code action",
-		},
-		c = {
-			vim.lsp.codelens.run,
-			"Run code lense",
-		},
-		C = {
-			vim.lsp.codelens.refresh,
-			"Refresh and run code lense",
-		},
+		a = { vim.lsp.buf.code_action, "Code action" },
+		c = { vim.lsp.codelens.run, "Run code lense" },
+		C = { vim.lsp.codelens.refresh, "Refresh and run code lense" },
+		h = { vim.lsp.buf.hover, "Hover" },
+    d = { vim.lsp.buf.definition, "Go to definition"},
+    D = { vim.lsp.buf.declaration, "Go to declaration" },
 
 		-- Rename
 		r = { ":IncRename ", "Rename" },
 
-    -- Trouble
-    t = { "<cmd>TroubleToggle<cr>", "Toggle issues" },
+		-- Trouble
+		t = { "<cmd>TroubleToggle<cr>", "Toggle issues" },
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },
