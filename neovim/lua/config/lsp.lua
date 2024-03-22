@@ -31,6 +31,7 @@ vim.diagnostic.config({
 		prefix = "●",
 	},
 	float = { border = border },
+	update_in_insert = true,
 })
 
 -------------------------------------------------------------------------------------------------------------------
@@ -103,7 +104,7 @@ local handlers = {
 
 for lsp, serverConfig in pairs(serverConfigs) do
 	serverConfig.capabilities = capabilities
-  serverConfig.handlers = handlers
+	serverConfig.handlers = handlers
 	lspconfig[lsp].setup(serverConfig)
 end
 

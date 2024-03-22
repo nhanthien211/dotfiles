@@ -42,7 +42,7 @@ local mappings = {
 		c = { vim.lsp.codelens.run, "Run code lense" },
 		C = { vim.lsp.codelens.refresh, "Refresh and run code lense" },
 		h = { vim.lsp.buf.hover, "Hover" },
-		s = { vim.lsp.buf.signature_help, "Signature help" },
+    s = { vim.lsp.buf.signature_help, "Signature help" },
 
 		-- Rename
 		r = { ":IncRename ", "Rename" },
