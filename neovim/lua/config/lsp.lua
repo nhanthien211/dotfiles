@@ -50,7 +50,7 @@ local lspToMasonMap = {
 	html = "html",
 	cssls = "css",
 	jsonls = "json",
-	tsserver = "typescript-language-server",
+	-- tsserver = "typescript-language-server",
 	eslint = "eslint_ls",
 	yamlls = "yaml_ls",
 }

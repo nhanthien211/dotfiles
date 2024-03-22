@@ -6,7 +6,6 @@ return {
     opts = {
 			use_diagnostic_signs = true,
 			auto_close = true,
-			auto_fold = true,
 
 			-- default
 			action_keys = { -- key mappings for actions in the trouble list
