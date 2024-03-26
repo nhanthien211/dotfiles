@@ -3,9 +3,8 @@ return {
 	branch = "v3.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
-		-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
 	config = function()
 		local git_icons = require("config.icons").git
@@ -31,6 +30,22 @@ return {
 			filesystem = {
 				follow_current_file = {
 					enabled = true,
+				},
+				filtered_items = {
+					visible = true,
+					hide_dotfiles = false,
+					hide_gitignored = true,
+					hide_by_name = {
+						".gitignore",
+						"package-lock.json",
+						"yarn-lock.json",
+					},
+					never_show = {
+						".git",
+						".DS_Store",
+						"thumbs.db",
+						"node_modules",
+					},
 				},
 			},
 		})

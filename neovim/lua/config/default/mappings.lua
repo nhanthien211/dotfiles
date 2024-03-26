@@ -16,10 +16,10 @@ map("n", "[<Leader>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silent = tru
 map("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move line up" })
 map("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move line down" })
 
-map({ "n", "v" }, "H", "^", { silent = true, desc = "Move to begnning" })
-map({ "n", "v" }, "L", "$", { silent = true, desc = "Move to end" })
-map({ "n", "v" }, "J", "+", { silent = true, desc = "Move to next line first char" })
-map({ "n", "v" }, "K", "-", { silent = true, desc = "Move to prev line first char" })
+map("n", "H", "^", { silent = true, desc = "Move to begnning" })
+map("n", "L", "$", { silent = true, desc = "Move to end" })
+map("n", "J", "+", { silent = true, desc = "Move to next line first char" })
+map("n", "K", "-", { silent = true, desc = "Move to prev line first char" })
 
 -- Easy select text in edit mode
 map("i", "<S-Up>", "<left><C-o>vk", silent)

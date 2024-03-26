@@ -2,11 +2,10 @@ return {
 	{
 		"folke/trouble.nvim",
 		lazy = true,
-    event = "VeryLazy",
-    opts = {
+		event = "VeryLazy",
+		opts = {
 			use_diagnostic_signs = true,
 			auto_close = true,
-auto_open = true,
 			-- default
 			action_keys = { -- key mappings for actions in the trouble list
 				-- map to {} to remove a mapping, for example:

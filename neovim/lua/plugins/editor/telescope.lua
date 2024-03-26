@@ -21,9 +21,12 @@ return {
 					colorscheme = {
 						enable_preview = true,
 					},
+					find_files = {
+						hidden = true,
+					},
 				},
 				defaults = {
-          wrap_results = true,
+					wrap_results = true,
 					mappings = {
 						i = {
 							["<esc>"] = actions.close,

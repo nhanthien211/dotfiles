@@ -27,6 +27,7 @@ return {
 					"yamllint",
 					-- formatter
 					"prettierd",
+					"prettier",
 				},
 			})
 		end,
@@ -44,7 +45,6 @@ return {
 					"lua_ls",
 					"html",
 					"cssls",
-					"jsonls",
 					"tsserver",
 					"eslint",
 					"yamlls",
