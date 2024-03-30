@@ -44,7 +44,6 @@ return {
 						".git",
 						".DS_Store",
 						"thumbs.db",
-						"node_modules",
 					},
 				},
 			},

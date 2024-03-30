@@ -17,11 +17,11 @@ local mappings = {
 					lsp_fallback = true,
 					async = false,
 					timeout_ms = 500,
-				})
-
-				vim.notify("Formatted", "info", {
-					title = "conform.nvim",
-				})
+				}, function()
+					vim.notify("Formatted", "info", {
+						title = "conform.nvim",
+					})
+				end)
 			end,
 			"Code format",
 		},
@@ -42,13 +42,16 @@ local mappings = {
 		c = { vim.lsp.codelens.run, "Run code lense" },
 		C = { vim.lsp.codelens.refresh, "Refresh and run code lense" },
 		h = { vim.lsp.buf.hover, "Hover" },
-    s = { vim.lsp.buf.signature_help, "Signature help" },
+		s = { vim.lsp.buf.signature_help, "Signature help" },
 
 		-- Rename
 		r = { ":IncRename ", "Rename" },
 
 		-- Trouble
 		i = { "<cmd>TroubleToggle<cr>", "Toggle issues" },
+
+		-- typescript-tool
+		o = { "<cmd>TSToolsOrganizeImports<cr>", "Organize imports" },
 	},
 	g = {
 		-- LSP

@@ -33,9 +33,9 @@ return {
 					},
 				},
 				defaults = {
-					wrap_results = true,
+					-- wrap_results = true,
 					vimgrep_arguments = vimgrep_arguments,
-					mappings = {
+					appings = {
 						i = {
 							["<esc>"] = actions.close,
 						},

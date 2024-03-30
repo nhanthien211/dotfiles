@@ -12,3 +12,5 @@ require("config.general")
 
 -- Extra settings
 require("config.lsp")
+require("config.copilot")
+require("config.signcolumn")

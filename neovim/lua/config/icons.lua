@@ -1,4 +1,8 @@
 return {
+	fold = {
+		Closed = "",
+		Open = "",
+	},
 	diagnostics = {
 		error = " ",
 		warn = " ",
@@ -21,6 +25,7 @@ return {
 		Color = " ",
 		Constant = " ",
 		Constructor = " ",
+		Copilot = " ",
 		Enum = " ",
 		EnumMember = " ",
 		Event = "",
