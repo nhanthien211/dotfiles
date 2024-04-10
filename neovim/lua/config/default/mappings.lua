@@ -32,6 +32,9 @@ map("v", "<S-Down>", "j", silent)
 map("v", "<S-left>", "h", silent)
 map("v", "<S-right>", "l", silent)
 
+-- Select all
+map("n", "<C-a>", "ggVG", silent)
+
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 

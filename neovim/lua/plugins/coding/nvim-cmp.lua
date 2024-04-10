@@ -28,6 +28,8 @@ return {
 			}
 
 			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load("~/.config/nvim")
+
 			cmp.setup({
 				completion = {
 					completeopt = "menu,menuone,preview,noselect",
@@ -67,7 +69,7 @@ return {
 					{ name = "nvim_lsp" }, -- lsp
 					{ name = "copilot" }, -- copilot
 					{ name = "luasnip" }, -- snippets
-					{ name = "buffer" }, -- text within current buffer
+					-- { name = "buffer" }, -- text within current buffer
 					{ name = "path" }, -- file system paths
 				}),
 			})
