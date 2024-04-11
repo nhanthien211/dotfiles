@@ -8,7 +8,7 @@ local opts = {
 
 local mappings = {
 	b = {
-		name = "bufferline",
+		name = "Bufferline",
 		p = { "<Cmd>BufferLineTogglePin<CR>", "Toggle tab pin" },
 		c = {
 			function()

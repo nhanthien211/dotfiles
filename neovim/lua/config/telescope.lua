@@ -8,16 +8,16 @@ local opts = {
 
 local mappings = {
 	f = {
-		name = "Toggle telescope",
+		name = "Telescope",
 		f = { "<Cmd>Telescope find_files<CR>", "Find files" },
-		w = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
-		c = { "<Cmd>Telescope colorscheme<CR>", "Change theme" },
-		r = { "<Cmd>Telescope lsp_references<CR>", "View reference" },
-		i = { "<Cmd>Telescope diagnostics<CR>", "View code diagnostics" },
+		w = { "<Cmd>Telescope live_grep<CR>", "Find word (Live grep)" },
+		c = { "<Cmd>Telescope colorscheme<CR>", "Find theme" },
+		r = { "<Cmd>Telescope lsp_references<CR>", "Find reference" },
+		i = { "<Cmd>Telescope diagnostics<CR>", "Find code diagnostics" },
 
 		-- Telescope plugins
-		n = { "<Cmd>Noice telescope<CR>", "View Noice message" },
-		t = { "<Cmd>TodoTelescope<CR>", "View todo" },
+		n = { "<Cmd>Noice telescope<CR>", "Find Noice message" },
+		t = { "<Cmd>TodoTelescope<CR>", "Find todo" },
 	},
 }
 

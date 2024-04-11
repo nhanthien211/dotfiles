@@ -48,18 +48,21 @@ local mappings = {
 		r = { ":IncRename ", "Rename" },
 
 		-- Trouble
-		i = { "<cmd>TroubleToggle<cr>", "Toggle issues" },
+		i = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle document issues" },
+		I = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Toggle document issues" },
 
 		-- typescript-tool
 		o = { "<cmd>TSToolsOrganizeImports<cr>", "Organize imports" },
 	},
 	g = {
+		name = "LSP and Git",
 		-- LSP
-		d = { vim.lsp.buf.definition, "Go to definition" },
-		D = { vim.lsp.buf.declaration, "Go to declaration" },
-		i = { vim.lsp.buf.implementation, "Go to implementation" },
-		s = { "<cmd>TSToolsGoToSourceDefinition<cr>", "Go to source" },
+		d = { "<Cmd>TroubleToggle lsp_definitions<CR>", "Go to definition" },
+		t = { "<Cmd>TroubleToggle lsp_type_definitions<CR>", "Go to type definition" },
+		i = { "<Cmd>TroubleToggle lsp_implementations<CR>", "Go to implementation" },
 		r = { "<Cmd>TroubleToggle lsp_references<CR>", "Go to reference" },
+		s = { "<cmd>TSToolsGoToSourceDefinition<cr>", "Go to source" },
+		D = { vim.lsp.buf.declaration, "Go to declaration" },
 
 		-- Git
 		b = { ":Gitsigns toggle_current_line_blame<CR>", "Git blame toggle" },
