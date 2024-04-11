@@ -58,6 +58,7 @@ local mappings = {
 		d = { vim.lsp.buf.definition, "Go to definition" },
 		D = { vim.lsp.buf.declaration, "Go to declaration" },
 		i = { vim.lsp.buf.implementation, "Go to implementation" },
+		s = { "<cmd>TSToolsGoToSourceDefinition<cr>", "Go to source" },
 		r = { "<Cmd>TroubleToggle lsp_references<CR>", "Go to reference" },
 
 		-- Git

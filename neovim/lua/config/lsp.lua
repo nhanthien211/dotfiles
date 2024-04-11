@@ -31,7 +31,7 @@ vim.diagnostic.config({
 		prefix = "●",
 	},
 	float = { border = border },
-	update_in_insert = true,
+	update_in_insert = false,
 })
 
 -------------------------------------------------------------------------------------------------------------------
@@ -41,6 +41,7 @@ vim.diagnostic.config({
 -- disable inline diagnostic
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	virtual_text = false,
+	update_in_insert = false,
 })
 
 -------------------------------------------------------------------------------------------------------------------
