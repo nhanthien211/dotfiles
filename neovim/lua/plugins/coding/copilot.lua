@@ -14,7 +14,9 @@ return {
 	{
 		"zbirenbaum/copilot-cmp",
 		config = function()
-			require("copilot_cmp").setup()
+			require("copilot_cmp").setup({
+				fix_pairs = true,
+			})
 		end,
 	},
 
@@ -22,7 +24,7 @@ return {
 		"CopilotC-Nvim/CopilotChat.nvim",
 		branch = "canary",
 		opts = {
-			debug = true, -- Enable debugging
+			debug = false, -- Enable debugging
 			-- See Configuration section for rest
 		},
 		config = function(_, opts)

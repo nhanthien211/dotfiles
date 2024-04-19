@@ -5,6 +5,9 @@ return {
 		vscode = true,
 		opts = {
 			modes = {
+				search = {
+					enabled = false,
+				},
 				treesitter = {
 					highlight = {
 						backdrop = true,

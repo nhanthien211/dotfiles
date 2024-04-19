@@ -43,6 +43,7 @@ local mappings = {
 		C = { vim.lsp.codelens.refresh, "Refresh and run code lense" },
 		h = { vim.lsp.buf.hover, "Hover" },
 		s = { vim.lsp.buf.signature_help, "Signature help" },
+		d = { "<Cmd>lua ToggleLspDiagnostic()<CR>", "Toggle diagnostic" },
 
 		-- Rename
 		r = { ":IncRename ", "Rename" },
