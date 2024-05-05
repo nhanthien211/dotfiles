@@ -62,12 +62,8 @@ end
 -- LSP and CMP integration
 local lspToMasonMap = {
 	lua_ls = "lua-language-server",
-	html = "html",
-	cssls = "css",
-	-- jsonls = "json",
 	["typescript-tools"] = "typescript-language-server",
-	eslint = "eslint_ls",
-	yamlls = "yaml_ls",
+	eslint = "eslint_lsp",
 }
 
 local serverConfigs = {}
@@ -101,6 +97,10 @@ capabilities.textDocument.foldingRange = {
 local handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+	["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		virtual_text = false,
+		update_in_insert = false,
+	}),
 }
 
 for lsp, serverConfig in pairs(serverConfigs) do
