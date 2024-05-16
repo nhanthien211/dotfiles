@@ -8,26 +8,12 @@ return {
 		},
 		opts = {
 			linters_by_ft = {
-				-- javascript = { "eslint" },
-				-- typescript = { "eslint" },
-				-- javascriptreact = { "eslint" },
-				-- typescriptreact = { "eslint" },
+				javascript = { "eslint_d" },
+				typescript = { "eslint_d" },
+				javascriptreact = { "eslint_d" },
+				typescriptreact = { "eslint_d" },
 				yaml = { "yamllint" },
 			},
-			-- linters = {
-			-- 	eslint = {
-			-- 		args = {
-			-- 			"--no-warn-ignored", -- <-- this is the key argument
-			-- 			"--format",
-			-- 			"json",
-			-- 			"--stdin",
-			-- 			"--stdin-filename",
-			-- 			function()
-			-- 				return vim.api.nvim_buf_get_name(0)
-			-- 			end,
-			-- 		},
-			-- 	},
-			-- },
 		},
 		config = function(_, opts)
 			local lint = require("lint")

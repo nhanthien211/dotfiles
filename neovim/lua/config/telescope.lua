@@ -44,6 +44,7 @@ local mappings = {
 			end,
 			"Find Harpoon list",
 		},
+		l = { "<Cmd>Telescope resume<CR>", "Last Telescope session" },
 	},
 }
 

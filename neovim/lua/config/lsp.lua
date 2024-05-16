@@ -27,9 +27,7 @@ end
 
 -- Change prefix character
 vim.diagnostic.config({
-	virtual_text = {
-		prefix = "●",
-	},
+	virtual_text = false,
 	float = { border = border },
 	update_in_insert = false,
 })
@@ -63,7 +61,7 @@ end
 local lspToMasonMap = {
 	lua_ls = "lua-language-server",
 	["typescript-tools"] = "typescript-language-server",
-	eslint = "eslint_lsp",
+	-- eslint = "eslint_lsp",
 }
 
 local serverConfigs = {}

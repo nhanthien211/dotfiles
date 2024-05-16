@@ -30,8 +30,9 @@ local mappings = {
 		l = {
 			function()
 				require("lint").try_lint()
-				vim.notify("Trigger linting", "info", {
-					title = "nvim-lint",
+				local linters = require("lint").get_running()
+				vim.notify("Run linting", "info", {
+					title = table.concat(linters, ", "),
 				})
 			end,
 			"Code linting",
@@ -87,6 +88,11 @@ local mappings = {
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },
+	r = {
+		name = "Restart",
+		l = { "<Cmd>LspRestart<CR>", "Restart LSP" },
+		t = { "<cmd>TroubleToggle<cr>", "Restart Trouble" },
+	},
 }
 
 wk.register(mappings, opts)

@@ -10,10 +10,10 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					yml = { "prettierd" },
-					javascript = { "prettier" },
-					typescript = { "prettier" },
-					javascriptreact = { "prettier" },
-					typescriptreact = { "prettier" },
+					javascript = { "prettierd" },
+					typescript = { "prettierd" },
+					javascriptreact = { "prettierd" },
+					typescriptreact = { "prettierd" },
 					json = { "prettier" },
 				},
 			})
