@@ -115,6 +115,9 @@ function ToggleLspDiagnostic()
 	if ignore_events then
 		-- Set eventignore to empty, not ignoring any events
 		vim.opt.eventignore = ""
+		vim.diagnostic.config({
+			underline = true,
+		})
 		ignore_events = false
 		vim.notify("Enable diagnostic", "info", {
 			title = "LSP Diagnostic",
@@ -126,6 +129,9 @@ function ToggleLspDiagnostic()
 				vim.api.nvim_win_close(win, true)
 			end
 		end
+		vim.diagnostic.config({
+			underline = false,
+		})
 
 		-- Set eventignore to ignore CursorHold and CursorHoldI events
 		vim.opt.eventignore = "CursorHold,CursorHoldI"
