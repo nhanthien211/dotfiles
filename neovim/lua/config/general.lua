@@ -67,7 +67,23 @@ local mappings = {
 
 		-- Git
 		b = { ":Gitsigns toggle_current_line_blame<CR>", "Git blame toggle" },
-		p = { ":Gitsigns preview_hunk<CR>", "Git preview hunk" },
+		p = { ":Gitsigns zopreview_hunk<CR>", "Git preview hunk" },
+	},
+	h = {
+		name = "Haproon",
+		-- Haproon
+		a = {
+			function()
+				require("harpoon"):list():add()
+			end,
+			"Add to Harpoon",
+		},
+		c = {
+			function()
+				require("harpoon"):list():clear()
+			end,
+			"CLear Harpoon",
+		},
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },
