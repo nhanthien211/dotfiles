@@ -88,10 +88,16 @@ local mappings = {
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },
-	r = {
-		name = "Restart",
-		l = { "<Cmd>LspRestart<CR>", "Restart LSP" },
-		t = { "<cmd>TroubleToggle<cr>", "Restart Trouble" },
+	t = {
+		name = "Toggle",
+		l = { "<Cmd>LspRestart<CR>", "Toggle LSP" },
+		t = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
+		h = {
+			function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end,
+			"Toggle inlay hint",
+		},
 	},
 }
 
