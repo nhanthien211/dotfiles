@@ -9,6 +9,7 @@ return {
 	config = function()
 		local git_icons = require("config.icons").git
 		require("neo-tree").setup({
+			enable_diagnostics = false,
 			default_component_configs = {
 				git_status = {
 					symbols = {
