@@ -50,8 +50,8 @@ local mappings = {
 		r = { ":IncRename ", "Rename" },
 
 		-- Trouble
-		i = { "<cmd>TroubleToggle document_diagnostics<cr>", "Toggle document issues" },
-		I = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Toggle document issues" },
+		i = { "<cmd>Trouble document_diagnostics toggle<cr>", "Toggle document issues" },
+		I = { "<cmd>Trouble workspace_diagnostics toggle<cr>", "Toggle document issues" },
 
 		-- typescript-tool
 		o = { "<cmd>TSToolsOrganizeImports<cr>", "Organize imports" },
@@ -59,10 +59,10 @@ local mappings = {
 	g = {
 		name = "LSP and Git",
 		-- LSP
-		d = { "<Cmd>TroubleToggle lsp_definitions<CR>", "Go to definition" },
-		t = { "<Cmd>TroubleToggle lsp_type_definitions<CR>", "Go to type definition" },
-		i = { "<Cmd>TroubleToggle lsp_implementations<CR>", "Go to implementation" },
-		r = { "<Cmd>TroubleToggle lsp_references<CR>", "Go to reference" },
+		d = { "<Cmd>Trouble lsp_definitions toggle<CR>", "Go to definition" },
+		t = { "<Cmd>Trouble lsp_type_definitions toggle<CR>", "Go to type definition" },
+		i = { "<Cmd>Trouble lsp_implementations toggle<CR>", "Go to implementation" },
+		r = { "<Cmd>Trouble lsp_references toggle<CR>", "Go to reference" },
 		s = { "<cmd>TSToolsGoToSourceDefinition<cr>", "Go to source" },
 		D = { vim.lsp.buf.declaration, "Go to declaration" },
 
@@ -88,9 +88,38 @@ local mappings = {
 	},
 	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
 	m = { "<Cmd>Mason<CR>", "Display Mason" },
+	r = {
+		name = "Reload",
+		l = { "<Cmd>LspRestart<CR>", "Reload LSP" },
+		e = {
+			function()
+				local tmux_session = "media-hub"
+				local handle = io.popen("tmux display-message -p '#S'")
+				if handle then
+					local current_session = handle:read("*a")
+					handle:close()
+
+					-- Remove any trailing newline character from the session name
+					current_session = current_session:gsub("\n", "")
+
+					-- Check if the current session matches the desired session
+					if current_session ~= tmux_session then
+						vim.notify("Current session is not " .. tmux_session, "warn")
+						return
+					end
+
+					local tmux_panel_id = "1.0"
+					local reload_command = "tmux send-keys -t " .. tmux_panel_id .. " r"
+					if os.execute(reload_command) then
+						vim.notify("Emulator reloaded", "info")
+					end
+				end
+			end,
+			"Reload emulator",
+		},
+	},
 	t = {
 		name = "Toggle",
-		l = { "<Cmd>LspRestart<CR>", "Toggle LSP" },
 		t = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
 		h = {
 			function()

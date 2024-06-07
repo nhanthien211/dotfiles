@@ -10,7 +10,15 @@ local mappings = {
 	f = {
 		name = "Telescope",
 		f = { "<Cmd>Telescope find_files<CR>", "Find files" },
-		w = { "<Cmd>Telescope live_grep<CR>", "Find word (Live grep)" },
+		w = {
+			function()
+				local conf = require("telescope.config").values
+				require("telescope.builtin").live_grep({
+					vimgrep_arguments = table.insert(conf.vimgrep_arguments, "--fixed-strings"),
+				})
+			end,
+			"Find word (Live grep)",
+		},
 		c = { "<Cmd>Telescope colorscheme<CR>", "Find theme" },
 		r = { "<Cmd>Telescope lsp_references<CR>", "Find reference" },
 		i = { "<Cmd>Telescope diagnostics<CR>", "Find code diagnostics" },
