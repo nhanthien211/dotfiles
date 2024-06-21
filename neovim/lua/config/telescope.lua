@@ -22,7 +22,7 @@ local mappings = {
 		c = { "<Cmd>Telescope colorscheme<CR>", "Find theme" },
 		r = { "<Cmd>Telescope lsp_references<CR>", "Find reference" },
 		i = { "<Cmd>Telescope diagnostics<CR>", "Find code diagnostics" },
-
+		e = { "<Cmd>Telescope simulators run<CR>", "Find simulators" },
 		-- Telescope plugins
 		n = { "<Cmd>Noice telescope<CR>", "Find Noice message" },
 		t = { "<Cmd>TodoTelescope<CR>", "Find todo" },

@@ -10,6 +10,9 @@ return {
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
 			},
+			{
+				"dimaportenko/telescope-simulators.nvim",
+			},
 		},
 		config = function()
 			local telescope = require("telescope")
@@ -41,6 +44,11 @@ return {
 						},
 					},
 				},
+			})
+
+			require("simulators").setup({
+				android_emulator = true,
+				apple_simulator = true,
 			})
 		end,
 	},

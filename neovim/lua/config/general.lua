@@ -120,7 +120,12 @@ local mappings = {
 	},
 	t = {
 		name = "Toggle",
-		t = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
+		t = {
+			function()
+				require("trouble").close()
+			end,
+			"Toggle Trouble",
+		},
 		h = {
 			function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

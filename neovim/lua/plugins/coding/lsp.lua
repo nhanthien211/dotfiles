@@ -24,6 +24,7 @@ return {
 				ensure_installed = {
 					-- linter
 					"eslint_d",
+					"eslint",
 					"yamllint",
 					-- formatter
 					"prettierd",
