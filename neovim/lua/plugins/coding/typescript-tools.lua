@@ -12,6 +12,7 @@ return {
 					end
 				end,
 				settings = {
+					separate_diagnostic_server = true,
 					tsserver_file_preferences = {
 						-- Inlay Hints
 						includeInlayParameterNameHints = "all",

@@ -9,7 +9,7 @@ return {
 			conform.setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
-					yml = { "prettierd" },
+					yml = { "yamlfix" },
 					javascript = { "prettierd" },
 					typescript = { "prettierd" },
 					javascriptreact = { "prettierd" },
