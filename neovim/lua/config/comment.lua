@@ -1,21 +1,18 @@
 local wk = require("which-key")
 
-wk.register({
-	["<C-c>"] = {
+wk.add({
+	{
+		"<C-c>",
 		function()
 			require("Comment.api").toggle.linewise.current()
 		end,
-		"Toggle comment",
+		desc = "Toggle comment",
+		mode = { "n", "i" },
 	},
-}, {
-	mode = { "n", "i" },
-})
-
-wk.register({
-	["<C-c>"] = {
+	{
+		"<C-c>",
 		"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-		"Toggle block comment",
+		desc = "Toggle block comment",
+		mode = "v",
 	},
-}, {
-	mode = "v",
 })

@@ -1,17 +1,12 @@
 local wk = require("which-key")
 
-local opts = {
-	mode = "n",
-	prefix = "<leader>",
-	silent = true,
-}
-
-local mappings = {
-	c = {
-		name = "Code action",
-
-		-- Conform.nvim
-		f = {
+wk.add({
+	{
+		"<leader>c",
+		group = "Code action",
+		{
+			-- Conform.nvim
+			"<leader>cf",
 			function()
 				require("conform").format({
 					lsp_fallback = true,
@@ -23,11 +18,11 @@ local mappings = {
 					})
 				end)
 			end,
-			"Code format",
+			desc = "Code format",
 		},
-
-		-- Nvim-lint.nvim
-		l = {
+		{
+			-- Nvim-lint.nvim
+			"<leader>cl",
 			function()
 				require("lint").try_lint()
 				local linters = require("lint").get_running()
@@ -35,63 +30,73 @@ local mappings = {
 					title = table.concat(linters, ", "),
 				})
 			end,
-			"Code linting",
+			desc = "Code linting",
 		},
 
 		-- LSP related
-		a = { vim.lsp.buf.code_action, "Code action" },
-		c = { vim.lsp.codelens.run, "Run code lense" },
-		C = { vim.lsp.codelens.refresh, "Refresh and run code lense" },
-		h = { vim.lsp.buf.hover, "Hover" },
-		s = { vim.lsp.buf.signature_help, "Signature help" },
-		d = { "<Cmd>lua ToggleLspDiagnostic()<CR>", "Toggle diagnostic" },
+		{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code action" },
+		{ "<leader>cc", vim.lsp.codelens.run, desc = "Run code lense" },
+		{ "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh and run code lense" },
+		{ "<leader>ch", vim.lsp.buf.hover, desc = "Hover" },
+		{ "<leader>cs", vim.lsp.buf.signature_help, desc = "Signature help" },
+		{ "<leader>cd", "<Cmd>lua ToggleLspDiagnostic()<CR>", desc = "Toggle diagnostic" },
 
 		-- Rename
-		r = { ":IncRename ", "Rename" },
+		{ "<leader>cr", ":IncRename ", desc = "Rename" },
 
 		-- Trouble
-		i = { "<cmd>Trouble document_diagnostics toggle<cr>", "Toggle document issues" },
-		I = { "<cmd>Trouble workspace_diagnostics toggle<cr>", "Toggle document issues" },
+		{ "<leader>ci", "<cmd>Trouble document_diagnostics toggle<cr>", desc = "Toggle document issues" },
+		{ "<leader>cI", "<cmd>Trouble workspace_diagnostics toggle<cr>", desc = "Toggle document issues" },
 
 		-- typescript-tool
-		o = { "<cmd>TSToolsOrganizeImports<cr>", "Organize imports" },
+		{ "<leader>co", "<cmd>TSToolsOrganizeImports<cr>", desc = "Organize imports" },
 	},
-	g = {
-		name = "LSP and Git",
+	{
+		"<leader>g",
+		group = "LSP and Git",
 		-- LSP
-		d = { "<Cmd>Trouble lsp_definitions toggle<CR>", "Go to definition" },
-		t = { "<Cmd>Trouble lsp_type_definitions toggle<CR>", "Go to type definition" },
-		i = { "<Cmd>Trouble lsp_implementations toggle<CR>", "Go to implementation" },
-		r = { "<Cmd>Trouble lsp_references toggle<CR>", "Go to reference" },
-		s = { "<cmd>TSToolsGoToSourceDefinition<cr>", "Go to source" },
-		D = { vim.lsp.buf.declaration, "Go to declaration" },
+		{ "<leader>gd", "<Cmd>Trouble lsp_definitions toggle<CR>", desc = "Go to definition" },
+		{ "<leader>gt", "<Cmd>Trouble lsp_type_definitions toggle<CR>", desc = "Go to type definition" },
+		{ "<leader>gi", "<Cmd>Trouble lsp_implementations toggle<CR>", desc = "Go to implementation" },
+		{ "<leader>gr", "<Cmd>Trouble lsp_references toggle<CR>", desc = "Go to reference" },
+		{ "<leader>gs", "<cmd>TSToolsGoToSourceDefinition<cr>", desc = "Go to source" },
+		{ "<leader>gD", vim.lsp.buf.declaration, desc = "Go to declaration" },
 
 		-- Git
-		b = { ":Gitsigns toggle_current_line_blame<CR>", "Git blame toggle" },
-		p = { ":Gitsigns zopreview_hunk<CR>", "Git preview hunk" },
+		{ "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", desc = "Git blame toggle" },
+		{ "<leader>gp", ":Gitsigns zopreview_hunk<CR>", desc = "Git preview hunk" },
 	},
-	h = {
-		name = "Haproon",
+	{
 		-- Haproon
-		a = {
+		"<leader>h",
+		group = "Harpoon",
+		{
+			"<leader>ha",
 			function()
 				require("harpoon"):list():add()
 			end,
-			"Add to Harpoon",
+			desc = "Add to Harpoon",
 		},
-		c = {
+		{
+			"<leader>hc",
 			function()
 				require("harpoon"):list():clear()
 			end,
-			"CLear Harpoon",
+			desc = "CLear Harpoon",
 		},
 	},
-	l = { "<Cmd>Lazy<CR>", "Display LazyVim" },
-	m = { "<Cmd>Mason<CR>", "Display Mason" },
-	r = {
-		name = "Reload",
-		l = { "<Cmd>LspRestart<CR>", "Reload LSP" },
-		e = {
+
+	-- Display
+	{ "<leader>l", "<Cmd>Lazy<CR>", desc = "Display LazyVim" },
+	{ "<leader>m", "<Cmd>Mason<CR>", desc = "Display Mason" },
+
+	-- Reload
+	{
+		"<leader>r",
+		group = "Reload",
+		{ "<leader>rl", "<Cmd>LspRestart<CR>", desc = "Reload LSP" },
+		{
+			"<leader>re",
 			function()
 				local tmux_session = "media-hub"
 				local handle = io.popen("tmux display-message -p '#S'")
@@ -115,24 +120,25 @@ local mappings = {
 					end
 				end
 			end,
-			"Reload emulator",
+			desc = "Reload emulator",
 		},
 	},
-	t = {
-		name = "Toggle",
-		t = {
+	{
+		"<leader>t",
+		group = "Toggle",
+		{
+			"<leader>tt",
 			function()
 				require("trouble").close()
 			end,
-			"Toggle Trouble",
+			desc = "Toggle Trouble",
 		},
-		h = {
+		{
+			"<leader>th",
 			function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end,
-			"Toggle inlay hint",
+			desc = "Toggle inlay hint",
 		},
 	},
-}
-
-wk.register(mappings, opts)
+})

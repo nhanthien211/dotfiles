@@ -1,32 +1,30 @@
 local wk = require("which-key")
 
-local opts = {
-	mode = "n",
-	prefix = "<leader>",
-	silent = true,
-}
-
-local mappings = {
-	f = {
-		name = "Telescope",
-		f = { "<Cmd>Telescope find_files<CR>", "Find files" },
-		w = {
+wk.add({
+	{
+		"<leader>f",
+		group = "Telescope",
+		{ "<leader>ff", "<Cmd>Telescope find_files<CR>", desc = "Find files" },
+		{
+			"<leader>fw",
 			function()
 				local conf = require("telescope.config").values
 				require("telescope.builtin").live_grep({
 					vimgrep_arguments = table.insert(conf.vimgrep_arguments, "--fixed-strings"),
 				})
 			end,
-			"Find word (Live grep)",
+			desc = "Find word (Live grep)",
 		},
-		c = { "<Cmd>Telescope colorscheme<CR>", "Find theme" },
-		r = { "<Cmd>Telescope lsp_references<CR>", "Find reference" },
-		i = { "<Cmd>Telescope diagnostics<CR>", "Find code diagnostics" },
-		e = { "<Cmd>Telescope simulators run<CR>", "Find simulators" },
+		{ "<leader>fc", "<Cmd>Telescope colorscheme<CR>", desc = "Find theme" },
+		{ "<leader>fr", "<Cmd>Telescope lsp_references<CR>", desc = "Find reference" },
+		{ "<leader>fi", "<Cmd>Telescope diagnostics<CR>", desc = "Find code diagnostics" },
+		{ "<leader>fe", "<Cmd>Telescope simulators run<CR>", desc = "Find simulators" },
+
 		-- Telescope plugins
-		n = { "<Cmd>Noice telescope<CR>", "Find Noice message" },
-		t = { "<Cmd>TodoTelescope<CR>", "Find todo" },
-		h = {
+		{ "<leader>fn", "<Cmd>Noice telescope<CR>", desc = "Find Noice message" },
+		{ "<leader>ft", "<Cmd>TodoTelescope<CR>", desc = "Find todo" },
+		{
+			"<leader>fh",
 			function()
 				-- basic telescope configuration
 				local harpoon = require("harpoon")
@@ -50,10 +48,8 @@ local mappings = {
 				end
 				toggle_telescope(harpoon:list())
 			end,
-			"Find Harpoon list",
+			desc = "Find Harpoon list",
 		},
-		l = { "<Cmd>Telescope resume<CR>", "Last Telescope session" },
+		{ "<leader>fl", "<Cmd>Telescope resume<CR>", desc = "Last Telescope session" },
 	},
-}
-
-wk.register(mappings, opts)
+})
