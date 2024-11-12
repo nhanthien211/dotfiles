@@ -47,11 +47,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 				lsp_fallback = true,
 				async = false,
 				timeout_ms = 500,
-			}, function()
-				vim.notify("Auto format on save", "info", {
-					title = "conform.nvim",
-				})
-			end)
+			})
 		end
 	end,
 })
