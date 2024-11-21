@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 local keys = {}
 
--- Main configuration
+-- Visual configuration
 config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font('MesloLGS NF', { weight = 'Bold' })
 config.font_size = 13
@@ -12,7 +12,7 @@ config.background= {
     -- the back-most layer, should be image
     {
       source = {
-        File = '/Users/ttn/.config/wezterm/wallpaper/neovim-background-2.jpg', -- Replace with the path to your image
+        File = '/Users/ttn/.config/wezterm/wallpaper/neovim-background-3.jpg', -- Replace with the path to your image
       },
       opacity = 1.0, -- Adjust transparency (1.0 is fully opaque, 0.0 is fully transparent)
     },
@@ -26,14 +26,11 @@ config.background= {
       },
       width = '100%',
       height = '100%',
-      opacity = 0.6
+      opacity = 0.7
     },
 }
 
--- Main behavior
 config.window_close_confirmation = 'NeverPrompt'
 config.window_decorations = 'RESIZE'
-
-config.keys = keys
 
 return config
