@@ -33,5 +33,11 @@ Also keep in mind:
 - Step 8: check https://www.ruby-lang.org/en/downloads/ for latest Ruby version
 
 ## MacOS
-Show hidden files Finder
+- Show hidden files Finder
 `defaults write com.apple.finder AppleShowAllFiles true`
+
+- Install `fd`:
+`brew install fd`
+
+- Install `ripgrep`:
+`brew install ripgrep`

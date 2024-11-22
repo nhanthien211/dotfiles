@@ -49,7 +49,7 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- Notify
 map({ "n", "v" }, "<leader>un", function()
-	require("notify").dismiss(silent)
+  require("notify").dismiss(silent)
 end, { desc = "Dimiss all notifcation" })
 
 -- neotree
