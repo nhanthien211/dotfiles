@@ -8,7 +8,6 @@ config.font = wezterm.font_with_fallback {
   { family = 'Monaspace Neon',     weight = 600, harfbuzz_features = { "calt=0", "clig=0", "liga=0" } },
 }
 
--- =>
 config.font_size = 13
 config.freetype_load_target = 'Light'
 config.use_fancy_tab_bar = false
@@ -16,7 +15,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.warn_about_missing_glyphs = true
 config.animation_fps = 60
 config.prefer_egl = true
-
+config.debug_key_events = true
 config.background = {
   -- the back-most layer, should be image
   {
@@ -35,7 +34,7 @@ config.background = {
     },
     width = '100%',
     height = '100%',
-    opacity = 0.7
+    opacity = 0.6
   },
 }
 
@@ -47,7 +46,7 @@ config.enable_wayland = true
 config.keys = {
   { key = "%",   mods = "CTRL|SHIFT", action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" } },
   { key = "$",   mods = "CTRL|SHIFT", action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" } },
-  { key = "w",   mods = "CTRL",       action = wezterm.action.CloseCurrentPane { confirm = true } },
+  { key = "w",   mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane { confirm = true } },
 
   { key = "h",   mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Left") },
   { key = "l",   mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Right") },
