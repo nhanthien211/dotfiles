@@ -35,7 +35,7 @@ config.background = {
   -- the back-most layer, should be image
   {
     source = {
-      File = '/Users/ttn/.config/wezterm/wallpaper/neovim-background-6.jpg',
+      File = '/Users/ttn/.config/wezterm/wallpaper/neovim-background-3.jpg',
     },
     opacity = 1.0,
   },
@@ -49,7 +49,7 @@ config.background = {
     },
     width = '100%',
     height = '100%',
-    opacity = 0.5
+    opacity = 0.6
   },
 }
 
@@ -87,6 +87,8 @@ config.keys = {
   { key = "v",          mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
   { key = "h",          mods = "CTRL|SHIFT", action = wezterm.action.HideApplication },
   { key = "f",          mods = "CTRL|SHIFT", action = wezterm.action.Search({ CaseSensitiveString = "" }) },
+  { key = "LeftArrow",  mods = "CTRL|SHIFT", action = wezterm.action.SendString("\x1b[1;6D") },
+  { key = "RightArrow", mods = "CTRL|SHIFT", action = wezterm.action.SendString("\x1b[1;6C") },
 }
 
 return config
