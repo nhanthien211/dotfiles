@@ -55,16 +55,16 @@ wk.add({
     "<leader>g",
     group = "LSP and Git",
     -- LSP
-    { "<leader>gd", "<Cmd>Trouble lsp_definitions toggle<CR>",      desc = "Go to definition" },
-    { "<leader>gt", "<Cmd>Trouble lsp_type_definitions toggle<CR>", desc = "Go to type definition" },
-    { "<leader>gi", "<Cmd>Trouble lsp_implementations toggle<CR>",  desc = "Go to implementation" },
-    { "<leader>gr", "<Cmd>Trouble lsp_references toggle<CR>",       desc = "Go to reference" },
-    { "<leader>gs", "<cmd>TSToolsGoToSourceDefinition<cr>",         desc = "Go to source" },
-    { "<leader>gD", vim.lsp.buf.declaration,                        desc = "Go to declaration" },
+    { "<leader>gd", "<Cmd>Trouble lsp_definitions toggle focus=true<CR>",     desc = "Go to definition" },
+    { "<leader>gt", "<Cmd>Trouble lsp_type_definitions toggle<CR>",           desc = "Go to type definition" },
+    { "<leader>gi", "<Cmd>Trouble lsp_implementations toggle focus=true<CR>", desc = "Go to implementation" },
+    { "<leader>gr", "<Cmd>Trouble lsp_references toggle<CR>",                 desc = "Go to reference" },
+    { "<leader>gs", "<cmd>TSToolsGoToSourceDefinition<cr>",                   desc = "Go to source" },
+    { "<leader>gD", vim.lsp.buf.declaration,                                  desc = "Go to declaration" },
 
     -- Git
-    { "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>",      desc = "Git blame toggle" },
-    { "<leader>gp", ":Gitsigns zopreview_hunk<CR>",                 desc = "Git preview hunk" },
+    { "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>",                desc = "Git blame toggle" },
+    { "<leader>gp", ":Gitsigns zopreview_hunk<CR>",                           desc = "Git preview hunk" },
   },
   {
     -- Haproon
