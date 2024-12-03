@@ -89,6 +89,7 @@ config.keys = {
   { key = "f",          mods = "CTRL|SHIFT", action = wezterm.action.Search({ CaseSensitiveString = "" }) },
   { key = "LeftArrow",  mods = "CTRL|SHIFT", action = wezterm.action.SendString("\x1b[1;6D") },
   { key = "RightArrow", mods = "CTRL|SHIFT", action = wezterm.action.SendString("\x1b[1;6C") },
+  { key = "raw:36",     mods = "SHIFT",      action = wezterm.action.SendString("\x1b[13;2u") }
 }
 
 return config
