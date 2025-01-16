@@ -82,7 +82,7 @@ wk.add({
       function()
         require("harpoon"):list():clear()
       end,
-      desc = "CLear Harpoon",
+      desc = "Clear Harpoon",
     },
   },
 
@@ -98,7 +98,7 @@ wk.add({
     {
       "<leader>re",
       function()
-        local tmux_session = "media-hub"
+        local tmux_session = "mediahub"
         local handle = io.popen("tmux display-message -p '#S'")
         if handle then
           local current_session = handle:read("*a")
@@ -113,7 +113,7 @@ wk.add({
             return
           end
 
-          local tmux_panel_id = "1.0"
+          local tmux_panel_id = "2.1"
           local reload_command = "tmux send-keys -t " .. tmux_panel_id .. " r"
           if os.execute(reload_command) then
             vim.notify("Emulator reloaded", "info")

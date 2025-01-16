@@ -42,6 +42,11 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsea
 map("v", "<Tab>", ">gv|", { desc = "Indent Left" })
 map("v", "<S-Tab>", "<gv", { desc = "Indent Right" })
 
+-- Pane
+map("n", "<leader>:", ":vsplit<CR>", silent)
+map("n", "<leader>%", ":split<CR>", silent)
+map("n", "<leader>x", ":close<CR>", silent)
+
 ------------------------------------
 
 -- quit
