@@ -23,6 +23,7 @@ wk.add({
     -- Telescope plugins
     { "<leader>fn", "<Cmd>Noice telescope<CR>",          desc = "Find Noice message" },
     { "<leader>ft", "<Cmd>TodoTelescope<CR>",            desc = "Find todo" },
+    { "<leader>fy", "<Cmd>Telescope yank_history<CR>",   desc = "Find yank history" },
     {
       "<leader>fh",
       function()

@@ -9,6 +9,7 @@ require("config.bufferline")
 require("config.telescope")
 require("config.comment")
 require("config.general")
+require("config.yanky")
 
 -- Extra settings
 require("config.lsp")

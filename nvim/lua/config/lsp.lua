@@ -74,7 +74,7 @@ serverConfigs.lua_ls = {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { "vim" },        -- when contributing to nvim plugins missing a `.luarc.json`
+        globals = { "vim" },            -- when contributing to nvim plugins missing a `.luarc.json`
         disable = { "trailing-space" }, -- formatter already does that
       },
     },
