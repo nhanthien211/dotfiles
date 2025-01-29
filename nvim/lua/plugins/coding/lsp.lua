@@ -65,4 +65,25 @@ return {
       require("inc_rename").setup()
     end,
   },
+
+  {
+    "axelvc/template-string.nvim",
+    event = "InsertEnter",
+    ft = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+    },
+    config = function()
+      require('template-string').setup({
+        remove_template_string = true, -- remove backticks when there are no template strings
+        restore_quotes = {
+          -- quotes used when "remove_template_string" option is enabled
+          normal = [[']],
+          jsx = [["]],
+        },
+      })
+    end
+  }
 }
