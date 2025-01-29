@@ -6,18 +6,17 @@ return {
     event = "VeryLazy",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "famiu/bufdelete.nvim",
     },
     config = function()
       require("bufferline").setup({
         options = {
           enforce_regular_tabs = false,
           middle_mouse_command = function(bufnum)
-            require("bufdelete").bufdelete(bufnum, true)
+            require("snacks").bufdelete(bufnum)
           end,
 
           close_command = function(bufnum)
-            require("bufdelete").bufdelete(bufnum, true)
+            require("snacks").bufdelete(bufnum)
           end,
           separator_style = "thin",
           hover = {

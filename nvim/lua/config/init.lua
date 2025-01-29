@@ -10,6 +10,7 @@ require("config.telescope")
 require("config.comment")
 require("config.general")
 require("config.yanky")
+require("config.snacks")
 
 -- Extra settings
 require("config.lsp")

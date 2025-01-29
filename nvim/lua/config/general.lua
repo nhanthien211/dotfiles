@@ -123,6 +123,8 @@ wk.add({
       desc = "Reload emulator",
     },
   },
+
+  -- Toggle
   {
     "<leader>t",
     group = "Toggle",
@@ -132,13 +134,6 @@ wk.add({
         require("trouble").close()
       end,
       desc = "Toggle Trouble",
-    },
-    {
-      "<leader>th",
-      function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end,
-      desc = "Toggle inlay hint",
     },
   },
 })

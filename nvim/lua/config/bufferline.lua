@@ -1,5 +1,5 @@
 local wk = require("which-key")
-
+local Snacks = require('snacks')
 wk.add({
   {
     "<leader>b",
@@ -8,7 +8,7 @@ wk.add({
     {
       "<leader>bc",
       function()
-        require("bufdelete").bufdelete(0, true)
+        Snacks.bufdelete(0)
       end,
       desc = "Close buffer",
     },
@@ -19,7 +19,7 @@ wk.add({
   {
     "<leader>w",
     function()
-      require("bufdelete").bufdelete(0, true)
+      Snacks.bufdelete(0)
     end,
     group = "Bufferline",
     desc = "Close buffer",

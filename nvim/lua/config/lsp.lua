@@ -102,9 +102,14 @@ local handlers = {
   }),
 }
 
+local on_attatch = function(client)
+
+end
+
 for lsp, serverConfig in pairs(serverConfigs) do
   serverConfig.capabilities = capabilities
   serverConfig.handlers = handlers
+  serverConfig.on_attach = on_attatch
   lspconfig[lsp].setup(serverConfig)
 end
 
