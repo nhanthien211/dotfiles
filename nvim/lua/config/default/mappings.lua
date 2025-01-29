@@ -47,6 +47,10 @@ map("n", "<leader>:", ":vsplit<CR>", silent)
 map("n", "<leader>%", ":split<CR>", silent)
 map("n", "<leader>x", ":close<CR>", silent)
 
+-- Delete without yanking
+map({ 'n', 'v' }, 'd', '"_d', { noremap = true })
+map('n', 'dd', '"_dd', { noremap = true })
+
 ------------------------------------
 
 -- quit
