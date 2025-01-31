@@ -5,7 +5,7 @@ return {
     event = "VeryLazy",
     opts = {
       use_diagnostic_signs = true,
-      auto_close = true,
+      auto_close = false,
       -- default
       action_keys = { -- key mappings for actions in the trouble list
         -- map to {} to remove a mapping, for example:

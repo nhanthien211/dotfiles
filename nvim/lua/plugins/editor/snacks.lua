@@ -4,22 +4,59 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
       -- bigfile = { enabled = true },
       -- dashboard = { enabled = true },
-      -- indent = { enabled = true },
-      -- input = { enabled = true },
-      -- picker = { enabled = true },
-      -- notifier = { enabled = true },
       -- quickfile = { enabled = true },
-      -- scroll = { enabled = true },
-      -- statuscolumn = { enabled = true },
+      -- scope = { enabled = true },
+      input = { enabled = true, },
+      scroll = { enabled = true },
+
+      picker = {
+        enabled = true,
+        highlight = {
+
+        },
+        layout = {
+          cycle = true, --- Use the default layout or vertical if the window is too narrow
+          preset = function() return vim.o.columns >= 120 and "telescope" or "vertical" end,
+        },
+
+        win = {
+          preview = {
+            minimal = true
+          },
+        },
+      },
+      statuscolumn = {
+        enabled = true,
+        folds = {
+          open = true, -- show open fold icons
+        },
+      },
       words = {
         enabled = true,
-        debounce = 500,
+        debounce = 200,
       },
+
+      indent = {
+        enabled = true,
+        chunk = {
+          enabled = true,
+          char = {
+            corner_top = "╭",
+            corner_bottom = "╰",
+            horizontal = "─",
+            vertical = "│",
+            arrow = ">",
+          }
+        }
+      },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+        style = "fancy",
+      },
+
     },
   }
 }

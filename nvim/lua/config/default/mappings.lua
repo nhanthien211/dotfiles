@@ -56,10 +56,5 @@ map('n', 'dd', '"_dd', { noremap = true })
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
--- Notify
-map({ "n", "v" }, "<leader>un", function()
-  require("notify").dismiss(silent)
-end, { desc = "Dimiss all notifcation" })
-
 -- neotree
 map("n", "<c-e>", "<cmd>Neotree toggle<cr>", { desc = "toggle file explorer" })

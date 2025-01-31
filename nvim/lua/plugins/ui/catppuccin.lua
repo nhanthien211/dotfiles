@@ -8,7 +8,13 @@ return {
       transparent_background = true,
       integrations = {
         neotree = true,
+        snacks = true,
       },
+      custom_highlights = function(colors)
+        return {
+          -- SnacksPickerListCursorLine = { bg = colors.transparent_background, style = { "bold" } },
+        }
+      end,
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
