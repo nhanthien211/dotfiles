@@ -12,11 +12,11 @@ return {
         options = {
           enforce_regular_tabs = false,
           middle_mouse_command = function(bufnum)
-            require("snacks").bufdelete(bufnum)
+            Snacks.bufdelete(bufnum)
           end,
 
           close_command = function(bufnum)
-            require("snacks").bufdelete(bufnum)
+            Snacks.bufdelete(bufnum)
           end,
           separator_style = "thin",
           hover = {
