@@ -30,3 +30,8 @@ wk.add({
   { "<leader>ns", function() Snacks.notifier.show_history() end, desc = "Show notification history" },
   { "<leader>nh", function() Snacks.notifier.hide() end,         desc = "Dismiss all notifcations" },
 })
+
+-- Explorer
+wk.add({
+  { "<c-e>", function() Snacks.picker.explorer() end, desc = "Open file explorer" }
+})

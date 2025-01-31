@@ -57,4 +57,4 @@ map('n', 'dd', '"_dd', { noremap = true })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- neotree
-map("n", "<c-e>", "<cmd>Neotree toggle<cr>", { desc = "toggle file explorer" })
+-- map("n", "<c-e>", "<cmd>Neotree toggle<cr>", { desc = "toggle file explorer" })

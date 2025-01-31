@@ -5,11 +5,11 @@ return {
     lazy = false,
     opts = {
       -- bigfile = { enabled = true },
-      -- dashboard = { enabled = true },
       -- quickfile = { enabled = true },
       -- scope = { enabled = true },
       input = { enabled = true, },
       scroll = { enabled = true },
+      dashboard = { enabled = true },
 
       picker = {
         enabled = true,

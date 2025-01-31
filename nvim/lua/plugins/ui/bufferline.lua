@@ -26,8 +26,7 @@ return {
           },
           offsets = {
             {
-              filetype = "neo-tree",
-              text = "File Explorer",
+              filetype = "snacks_layout_box",
               highlight = "Directory",
               text_align = "center",
               separator = true,
