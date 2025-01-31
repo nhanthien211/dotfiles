@@ -1,5 +1,4 @@
 local wk = require("which-key")
-local Snacks = require('snacks')
 wk.add({
   {
     "<leader>b",

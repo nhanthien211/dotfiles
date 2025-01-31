@@ -14,4 +14,3 @@ require("config.snacks")
 
 -- Extra settings
 require("config.lsp")
-require("config.signcolumn")

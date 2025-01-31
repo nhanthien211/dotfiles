@@ -18,6 +18,7 @@ return {
           "yaml",
           "css",
           "scss",
+          "regex",
         },
         highlight = { enable = true },
         indent = { enable = true },
