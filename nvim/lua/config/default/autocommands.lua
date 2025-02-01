@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   pattern = { "n:i", "v:s" },
   desc = "Disable diagnostics in insert and select mode",
   callback = function(e)
-    vim.diagnostic.disable(e.buf)
+    vim.diagnostic.enable(false, { e.buf })
   end,
 })
 
@@ -65,6 +65,6 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   pattern = "i:n",
   desc = "Enable diagnostics when leaving insert mode",
   callback = function(e)
-    vim.diagnostic.enable(e.buf)
+    vim.diagnostic.enable(true, { e.buf })
   end,
 })

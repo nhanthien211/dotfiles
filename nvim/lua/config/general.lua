@@ -39,7 +39,6 @@ wk.add({
     { "<leader>cC", vim.lsp.codelens.refresh,                        desc = "Refresh and run code lense" },
     { "<leader>ch", vim.lsp.buf.hover,                               desc = "Hover" },
     { "<leader>cs", vim.lsp.buf.signature_help,                      desc = "Signature help" },
-    { "<leader>cd", "<Cmd>lua ToggleLspDiagnostic()<CR>",            desc = "Toggle diagnostic" },
 
     -- Rename
     { "<leader>cr", ":IncRename ",                                   desc = "Rename" },

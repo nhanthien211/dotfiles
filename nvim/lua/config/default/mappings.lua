@@ -52,9 +52,5 @@ map({ 'n', 'v' }, 'd', '"_d', { noremap = true })
 map('n', 'dd', '"_dd', { noremap = true })
 
 ------------------------------------
-
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-
--- neotree
--- map("n", "<c-e>", "<cmd>Neotree toggle<cr>", { desc = "toggle file explorer" })
