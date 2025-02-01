@@ -41,7 +41,6 @@ return {
             },
           }
         },
-
         layout = {
           cycle = true, --- Use the default layout or vertical if the window is too narrow
           preset = function() return vim.o.columns >= 120 and "telescope" or "vertical" end,
@@ -51,6 +50,11 @@ return {
           preview = {
             minimal = true
           },
+          -- input = {
+          --   keys = {
+          --     ["<Esc>"] = { "close", mode = { "n", "i" } },
+          --   }
+          -- }
         },
       },
       statuscolumn = {

@@ -18,6 +18,7 @@ return {
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    enabled = false, -- enable only during first run
     event = "VeryLazy",
     config = function()
       require("mason-tool-installer").setup({
@@ -36,6 +37,7 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
+    enabled = false, -- enable only during first run
     event = "VeryLazy",
     opts = {
       auto_install = true,
