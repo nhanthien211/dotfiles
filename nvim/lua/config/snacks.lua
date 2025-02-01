@@ -33,6 +33,38 @@ wk.add({
 })
 
 -- Toggle key map
+-----------------Toggle LSP diagnostic helper functions--------------------------------------------------------
+local ignore_events = false
+
+function ToggleLspDiagnostic()
+  -- Additional check to remove highlight / floating windows
+  if ignore_events then
+    -- Set eventignore to empty, not ignoring any events
+    vim.opt.eventignore = ""
+    vim.diagnostic.config({
+      underline = true,
+    })
+    ignore_events = false
+  else
+    -- Close all floating windows
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if vim.api.nvim_win_get_config(win).relative ~= "" then
+        vim.api.nvim_win_close(win, true)
+      end
+    end
+    vim.diagnostic.config({
+      underline = false,
+    })
+
+    -- Set eventignore to ignore CursorHold and CursorHoldI events
+    vim.opt.eventignore = "CursorHold,CursorHoldI"
+    ignore_events = true
+  end
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end
+
+-------------------------------------------------------------------------------------------------------------------
+
 Snacks.toggle.words():map("<leader>tw")
 Snacks.toggle.inlay_hints():map("<leader>th")
 Snacks.toggle({
@@ -41,6 +73,6 @@ Snacks.toggle({
     return vim.diagnostic.is_enabled()
   end,
   set = function()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    ToggleLspDiagnostic()
   end
 }):map("<leader>td")
