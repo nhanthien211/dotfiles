@@ -93,15 +93,37 @@ capabilities.textDocument.foldingRange = {
 }
 
 -- LSP settings (for overriding per client)
+-- Import TypeScript tools API
+-- local ts_api = require("typescript-tools.api")
+
+-- LSP handlers
 local handlers = {
   ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
-    update_in_insert = false,
-  }),
-}
+    update_in_insert = false
+  }
+  )
 
+  -- NOTE: this can be used to filter tsserver code
+  --
+  -- function(err, result, ctx)
+  --   if ctx.client_id then
+  --     local client = vim.lsp.get_client_by_id(ctx.client_id)
+  --     if client and client.name == "typescript-tools" then
+  --       -- return ts_api.filter_diagnostics(
+  --       --   {
+  --       --   }
+  --       -- )
+  --     end
+  --   end
+  --   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, {
+  --     virtual_text = false,
+  --     update_in_insert = false
+  --   })
+  -- end,
+}
 local on_attatch = function(client)
 
 end
