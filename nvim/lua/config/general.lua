@@ -13,7 +13,7 @@ wk.add({
           async = false,
           timeout_ms = 500,
         }, function()
-          vim.notify("Formatted", "info", {
+          vim.notify("Formatted", vim.log.levels.INFO, {
             title = "conform.nvim",
           })
         end)
@@ -26,7 +26,7 @@ wk.add({
       function()
         require("lint").try_lint()
         local linters = require("lint").get_running()
-        vim.notify("Run linting", "info", {
+        vim.notify("Run linting", vim.log.levels.INFO, {
           title = table.concat(linters, ", "),
         })
       end,
@@ -97,7 +97,7 @@ wk.add({
     {
       "<leader>re",
       function()
-        local tmux_session = "mediahub"
+        local tmux_session = "mediahub" -- session that we can run this function
         local handle = io.popen("tmux display-message -p '#S'")
         if handle then
           local current_session = handle:read("*a")
@@ -108,14 +108,14 @@ wk.add({
 
           -- Check if the current session matches the desired session
           if current_session ~= tmux_session then
-            vim.notify("Current session is not " .. tmux_session, "warn")
+            vim.notify("Current session is not " .. tmux_session, vim.log.levels.ERROR)
             return
           end
 
           local tmux_panel_id = "2.1"
           local reload_command = "tmux send-keys -t " .. tmux_panel_id .. " r"
           if os.execute(reload_command) then
-            vim.notify("Emulator reloaded", "info")
+            vim.notify("Emulator reloaded", vim.log.levels.INFO)
           end
         end
       end,
