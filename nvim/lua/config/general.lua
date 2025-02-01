@@ -43,9 +43,10 @@ wk.add({
     -- Rename
     { "<leader>cr", ":IncRename ",                                   desc = "Rename" },
 
-    -- Trouble
-    { "<leader>ci", "<cmd>Trouble document_diagnostics toggle<cr>",  desc = "Toggle document issues" },
-    { "<leader>cI", "<cmd>Trouble workspace_diagnostics toggle<cr>", desc = "Toggle document issues" },
+    -- TODO: update all Trouble keymap
+    -- Diagnostics in Trouble
+    { "<leader>cd", "<cmd>Trouble document_diagnostics toggle<cr>",  desc = "Toggle document issues" },
+    { "<leader>cD", "<cmd>Trouble workspace_diagnostics toggle<cr>", desc = "Toggle document issues" },
 
     -- typescript-tool
     { "<leader>co", "<cmd>TSToolsOrganizeImports<cr>",               desc = "Organize imports" },

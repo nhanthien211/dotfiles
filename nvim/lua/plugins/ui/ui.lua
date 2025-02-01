@@ -1,11 +1,5 @@
 return {
-  -- INFO: disable to use Snacks.picker for vim.ui.select
-  -- {
-  --   "stevearc/dressing.nvim",
-  --   enabled = true,
-  --   opts = {},
-  -- },
-
+  -- todo-comments.nvim: Styling for comment tagging
   {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
