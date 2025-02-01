@@ -27,10 +27,8 @@ return {
           offsets = {
             {
               filetype = "snacks_layout_box",
-              text = function()
-                return nil
-              end,
-              -- highlight = "Directory",
+              text = "File explorer",
+              highlight = "Directory",
               text_align = "center",
               separator = true,
             },
