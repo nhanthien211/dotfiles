@@ -62,7 +62,6 @@ local lspToMasonMap = {
   lua_ls = "lua-language-server",
   yamlls = "yaml-language-server",
   ["typescript-tools"] = "typescript-language-server",
-  -- eslint = "eslint_lsp",
 }
 
 local serverConfigs = {}
