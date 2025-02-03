@@ -14,7 +14,7 @@ wk.add({
           timeout_ms = 500,
         }, function()
           vim.notify("Formatted", vim.log.levels.INFO, {
-            title = "conform.nvim",
+            title = "Conform",
           })
         end)
       end,
@@ -43,13 +43,45 @@ wk.add({
     -- Rename
     { "<leader>cr", ":IncRename ",                                      desc = "Rename" },
 
-    -- TODO: update all Trouble keymap
     -- Diagnostics in Trouble
-    { "<leader>cd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Toggle document issues" },
-    { "<leader>cD", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Toggle document issues" },
+    { "<leader>cd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Show document issues" },
+    { "<leader>cD", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Show workspace issues" },
 
     -- typescript-tool
-    { "<leader>co", "<cmd>TSToolsOrganizeImports<cr>",                  desc = "Organize imports" },
+    {
+      "<leader>co",
+      function()
+        local foundApi = false
+        for _, client in ipairs(vim.lsp.get_clients()) do
+          local lspName = client.name
+          if lspName:match('typescript-tools') then
+            require("typescript-tools.api").organize_imports()
+            foundApi = true
+          end
+        end
+        if not foundApi then
+          vim.notify("No matching LSP client API for organize imports", vim.log.levels.INFO)
+        end
+      end,
+      desc = "Organize imports"
+    },
+    {
+      "<leader>gs",
+      function()
+        local foundApi = false
+        for _, client in ipairs(vim.lsp.get_clients()) do
+          local lspName = client.name
+          if lspName:match('typescript-tools') then
+            require("typescript-tools.api").go_to_source_definition()
+            foundApi = true
+          end
+        end
+        if not foundApi then
+          vim.notify("No matching LSP client API for source definition", vim.log.levels.INFO)
+        end
+      end,
+      desc = "Go to source"
+    },
   },
 
   { "<leader>g",  group = "LSP" },
@@ -58,12 +90,7 @@ wk.add({
   { "<leader>gt", "<Cmd>Trouble lsp_type_definitions toggle<CR>",           desc = "Go to type definition" },
   { "<leader>gi", "<Cmd>Trouble lsp_implementations toggle focus=true<CR>", desc = "Go to implementation" },
   { "<leader>gr", "<Cmd>Trouble lsp_references toggle focus=true<CR>",      desc = "Go to reference" },
-  { "<leader>gs", "<cmd>TSToolsGoToSourceDefinition<cr>",                   desc = "Go to source" },
   { "<leader>gD", vim.lsp.buf.declaration,                                  desc = "Go to declaration" },
-
-  -- Git
-  -- { "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>",                desc = "Git blame toggle" },
-  -- { "<leader>gp", ":Gitsigns preview_hunk<CR>",                             desc = "Git preview hunk" },
 
   {
     -- Haproon
@@ -120,19 +147,6 @@ wk.add({
         end
       end,
       desc = "Reload emulator",
-    },
-  },
-
-  -- Toggle
-  {
-    "<leader>t",
-    group = "Toggle",
-    {
-      "<leader>tt",
-      function()
-        require("trouble").close()
-      end,
-      desc = "Toggle Trouble",
     },
   },
 })

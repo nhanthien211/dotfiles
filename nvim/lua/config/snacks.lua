@@ -67,6 +67,7 @@ end
 
 Snacks.toggle.words():map("<leader>tw")
 Snacks.toggle.inlay_hints():map("<leader>th")
+-- Dignostics
 Snacks.toggle({
   name = "Code diagnostics",
   get = function()
@@ -76,3 +77,13 @@ Snacks.toggle({
     ToggleLspDiagnostic()
   end
 }):map("<leader>td")
+-- Git
+Snacks.toggle({
+  name = "Git blame",
+  get = function()
+    return require("gitsigns.config").config.current_line_blame
+  end,
+  set = function()
+    require("gitsigns").toggle_current_line_blame()
+  end
+}):map("<leader>tb")

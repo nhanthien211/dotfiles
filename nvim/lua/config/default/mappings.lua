@@ -4,13 +4,16 @@ local silent = { silent = true }
 ------TRADITIONAL KEYBINDING--------
 
 map({ "i", "n" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
 map({ "i", "n" }, "<C-z>", "<cmd>u<cr>", { desc = "Undo" })
 map({ "i", "n" }, "<C-r>", "<cmd>redo<cr>", { desc = "Redo" })
 
 -- Start new line from any cursor position in insert-mode
 map("i", "<S-CR>", "<C-o>o", { desc = "Start Newline" })
-map("n", "]<Leader>", ":set paste<CR>m`o<Esc>``:set nopaste<CR>", { silent = true, desc = "Insert line under" })
-map("n", "[<Leader>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silent = true, desc = "Insert line above" })
+map("n", "]<Leader>", ":set paste<CR>o<Esc>:set nopaste<CR>a",
+  { silent = true, desc = "Insert line under" })
+map("n", "[<Leader>", ":set paste<CR>O<Esc>:set nopaste<CR>a",
+  { silent = true, desc = "Insert line above" })
 
 -- Move lines
 map("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move line up" })
