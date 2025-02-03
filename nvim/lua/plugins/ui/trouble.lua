@@ -33,6 +33,16 @@ return {
         next = "j",                                  -- next item
         help = "?",                                  -- help menu
       },
+      modes = {
+        lsp_base = {
+          preview = {
+            type = "split",
+            relative = "win",
+            position = "right",
+            size = 0.5,
+          },
+        }
+      }
     },
     config = function(_, opts)
       require("trouble").setup(opts)
