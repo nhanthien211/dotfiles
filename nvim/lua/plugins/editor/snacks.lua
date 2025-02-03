@@ -50,11 +50,6 @@ return {
           preview = {
             minimal = true
           },
-          -- input = {
-          --   keys = {
-          --     ["<Esc>"] = { "close", mode = { "n", "i" } },
-          --   }
-          -- }
         },
       },
       statuscolumn = {

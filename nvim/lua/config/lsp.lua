@@ -1,15 +1,14 @@
 -- This is to enable float border
-local border = {
-  { "┌", "FloatBorder" },
-  { "─", "FloatBorder" },
-  { "┐", "FloatBorder" },
-  { "│", "FloatBorder" },
-  { "┘", "FloatBorder" },
-  { "─", "FloatBorder" },
-  { "└", "FloatBorder" },
-  { "│", "FloatBorder" },
-}
-
+-- local border = {
+--   { "┌", "FloatBorder" },
+--   { "─", "FloatBorder" },
+--   { "┐", "FloatBorder" },
+--   { "│", "FloatBorder" },
+--   { "┘", "FloatBorder" },
+--   { "─", "FloatBorder" },
+--   { "└", "FloatBorder" },
+--   { "│", "FloatBorder" },
+-- }
 -------------------------------------------------------------------------------------------------------------------
 
 -- change lsp icons
@@ -28,24 +27,13 @@ end
 -- Change prefix character
 vim.diagnostic.config({
   virtual_text = false,
-  float = { border = border },
+  float = { border = 'rounded' },
   update_in_insert = false,
 })
 
 -------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------
-
--- disable inline diagnostic
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false,
-  update_in_insert = false,
-})
-
--------------------------------------------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------------------------------------------
-
 -- Change compeletion icons
 local completion_icons = require("config.icons").lsp_completions
 local kinds = vim.lsp.protocol.CompletionItemKind
@@ -84,36 +72,16 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local lspconfig = require("lspconfig")
 
 -- This is to enable nvim-ufo
-
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
 }
 
--- LSP settings (for overriding per client)
--- Import TypeScript tools API
--- local ts_api = require("typescript-tools.api")
--- function(err, result, ctx)
---   if ctx.client_id then
---     local client = vim.lsp.get_client_by_id(ctx.client_id)
---     if client and client.name == "typescript-tools" then
---       return ts_api.filter_diagnostics(
---         {
---         }
---       )
---     end
---   end
---   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, {
---     virtual_text = false,
---     update_in_insert = false
---   })
--- end
-
 -- LSP handlers
 local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
     update_in_insert = false

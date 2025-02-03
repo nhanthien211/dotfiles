@@ -13,6 +13,8 @@ wk.add({
   { "<leader>fl", function() Snacks.picker.resume() end,               desc = "Find last" },
   { "<leader>fp", function() Snacks.picker.projects() end,             desc = "Find projects" },
   { "<leader>ft", function() Snacks.picker.todo_comments() end,        desc = "Find comment tag" },
+  { "<leader>fb", function() Snacks.picker.buffers() end,              desc = "Find buffer" },
+
   -- LSP
   { "<leader>fd", function() Snacks.picker.lsp_definitions() end,      desc = "Find Definition" },
   { "<leader>fD", function() Snacks.picker.lsp_declarations() end,     desc = "Find Declaration" },
@@ -70,7 +72,7 @@ Snacks.toggle.words():map("<leader>tw")
 Snacks.toggle.inlay_hints():map("<leader>th")
 -- Dignostics
 Snacks.toggle({
-  name = "Code diagnostics",
+  name = "code diagnostics",
   get = function()
     return vim.diagnostic.is_enabled()
   end,
@@ -80,7 +82,7 @@ Snacks.toggle({
 }):map("<leader>td")
 -- Git
 Snacks.toggle({
-  name = "Git blame",
+  name = "git line blame",
   get = function()
     return require("gitsigns.config").config.current_line_blame
   end,
@@ -88,3 +90,28 @@ Snacks.toggle({
     require("gitsigns").toggle_current_line_blame()
   end
 }):map("<leader>tb")
+Snacks.toggle({
+  name = "relative line number",
+  get = function()
+    return vim.wo.relativenumber
+  end,
+  set = function()
+    vim.wo.relativenumber = not vim.wo.relativenumber
+  end
+}):map("<leader>tl")
+
+-- Input
+wk.add({
+  {
+    "<C-g>",
+    function()
+      Snacks.input.input({ prompt = "Go to line: " }, function(value)
+        local line_number = tonumber(value)
+        if line_number then
+          vim.api.nvim_feedkeys(line_number .. 'G', 'n', false)
+        end
+      end)
+    end,
+    desc = "Go to line: "
+  }
+})
