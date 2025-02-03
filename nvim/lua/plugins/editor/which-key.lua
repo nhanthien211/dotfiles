@@ -11,6 +11,7 @@ return {
       icons = {
         rules = {
           { pattern = "lsp", icon = "", color = "green" },
+          { pattern = "trouble", icon = "", color = "cyan" },
           { pattern = "reload", icon = '', color = 'orange' }
         }
       }

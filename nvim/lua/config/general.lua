@@ -84,13 +84,13 @@ wk.add({
     },
   },
 
-  { "<leader>g",  group = "LSP" },
+  { "<leader>g", group = "Trouble", icon = '' },
   -- LSP
-  { "<leader>gd", "<Cmd>Trouble lsp_definitions toggle focus=true<CR>",     desc = "Go to definition" },
-  { "<leader>gt", "<Cmd>Trouble lsp_type_definitions toggle<CR>",           desc = "Go to type definition" },
-  { "<leader>gi", "<Cmd>Trouble lsp_implementations toggle focus=true<CR>", desc = "Go to implementation" },
-  { "<leader>gr", "<Cmd>Trouble lsp_references toggle focus=true<CR>",      desc = "Go to reference" },
-  { "<leader>gD", vim.lsp.buf.declaration,                                  desc = "Go to declaration" },
+  { "<leader>gd", "<Cmd>Trouble lsp_definitions toggle<CR>", desc = "Show definition" },
+  { "<leader>gt", "<Cmd>Trouble lsp_type_definitions toggle<CR>", desc = "Show type definition" },
+  { "<leader>gi", "<Cmd>Trouble lsp_implementations toggle<CR>", desc = "Show implementation" },
+  { "<leader>gr", "<Cmd>Trouble lsp_references toggle<CR>", desc = "Show reference" },
+  { "<leader>gD", "<Cmd>Trouble lsp_declarations toggle<CR>", desc = "Show declaration" },
 
   {
     -- Haproon

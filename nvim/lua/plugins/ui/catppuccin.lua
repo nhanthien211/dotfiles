@@ -5,6 +5,7 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
+      flavour = "frappe",
       transparent_background = true,
       integrations = {
         neotree = true,
