@@ -8,7 +8,6 @@ return {
 
       conform.setup({
         formatters_by_ft = {
-          yml = { "yamlfix" },
           javascript = { "prettierd" },
           typescript = { "prettierd" },
           javascriptreact = { "prettierd" },

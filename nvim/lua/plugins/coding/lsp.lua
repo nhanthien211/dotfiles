@@ -26,7 +26,6 @@ return {
           -- linter
           "eslint_d",
           "eslint",
-          "yamllint",
           -- formatter
           "prettierd",
           "prettier",
@@ -47,9 +46,6 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "html",
-          "cssls",
-          "eslint",
           "yamlls",
         },
       })
@@ -65,7 +61,7 @@ return {
     "smjonas/inc-rename.nvim",
     event = "VeryLazy",
     config = function()
-      require("inc_rename").setup()
+      require("inc_rename").setup({})
     end,
   },
 
