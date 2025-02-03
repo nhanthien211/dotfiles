@@ -47,20 +47,16 @@ wk.add({
     { "<leader>cd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Show document issues" },
     { "<leader>cD", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Show workspace issues" },
 
-    -- typescript-tool
+    -- typescript-tools
     {
       "<leader>co",
       function()
-        local foundApi = false
         for _, client in ipairs(vim.lsp.get_clients()) do
           local lspName = client.name
-          if lspName:match('typescript-tools') then
+          if lspName == "typescript-tools" then
             require("typescript-tools.api").organize_imports()
-            foundApi = true
+            return
           end
-        end
-        if not foundApi then
-          vim.notify("No matching LSP client API for organize imports", vim.log.levels.INFO)
         end
       end,
       desc = "Organize imports"
@@ -68,16 +64,12 @@ wk.add({
     {
       "<leader>gs",
       function()
-        local foundApi = false
         for _, client in ipairs(vim.lsp.get_clients()) do
           local lspName = client.name
-          if lspName:match('typescript-tools') then
+          if lspName == "typescript-tools" then
             require("typescript-tools.api").go_to_source_definition()
-            foundApi = true
+            return
           end
-        end
-        if not foundApi then
-          vim.notify("No matching LSP client API for source definition", vim.log.levels.INFO)
         end
       end,
       desc = "Go to source"
