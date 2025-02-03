@@ -43,9 +43,9 @@ map("v", "<Tab>", ">gv|", { desc = "Indent Left" })
 map("v", "<S-Tab>", "<gv", { desc = "Indent Right" })
 
 -- Pane
-map("n", "<leader>:", ":vsplit<CR>", silent)
-map("n", "<leader>%", ":split<CR>", silent)
-map("n", "<leader>x", ":close<CR>", silent)
+map("n", "<leader>:", ":vsplit<CR>", { silent = true, desc = "which_key_ignore" })
+map("n", "<leader>%", ":split<CR>", { silent = true, desc = "which_key_ignore" })
+map("n", "<leader>x", ":close<CR>", { silent = true, desc = "which_key_ignore" })
 
 -- Delete without yanking
 map({ 'n', 'v' }, 'd', '"_d', { noremap = true })
@@ -53,4 +53,4 @@ map('n', 'dd', '"_dd', { noremap = true })
 
 ------------------------------------
 -- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "which_key_ignore" })

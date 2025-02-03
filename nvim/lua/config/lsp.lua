@@ -122,9 +122,16 @@ local handlers = {
 }
 
 local on_attatch = function(client)
-  -- should use conform plugin instead of default LSP provided
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  local client_name = client.name
+  if client_name:match('lua') then
+    return
+  end
+
+  if client_name:match('typescript') or client_name:match('ts') then
+    -- for typescript, we want to use prettierd
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
 end
 
 for lsp, serverConfig in pairs(serverConfigs) do
