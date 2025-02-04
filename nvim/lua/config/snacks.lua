@@ -38,7 +38,9 @@ wk.add({
 -- Toggle key map
 -----------------Toggle LSP diagnostic helper functions--------------------------------------------------------
 local ignore_events = false
-
+wk.add({
+  { "<leader>t", group = "Toggle" }
+})
 function ToggleLspDiagnostic()
   -- Additional check to remove highlight / floating windows
   if ignore_events then
