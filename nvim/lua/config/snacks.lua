@@ -21,6 +21,59 @@ wk.add({
   { "<leader>fr", function() Snacks.picker.lsp_references() end,       desc = "Find References",     nowait = true, },
   { "<leader>fI", function() Snacks.picker.lsp_implementations() end,  desc = "Find Implementation" },
   { "<leader>fy", function() Snacks.picker.lsp_type_definitions() end, desc = "Find Type Definition" },
+
+  -- Harpoon
+  {
+    "<leader>fh",
+    function()
+      -- basic telescope configuration
+      local harpoon = require("harpoon")
+
+      local function toggle_snack_picker(harpoon_files)
+        local file_paths = {}
+        for _, item in ipairs(harpoon_files.items) do
+          table.insert(file_paths, item.value)
+        end
+
+        Snacks.picker.pick({
+          title   = 'Harpoon',
+          live    = true,
+          layout  = {
+            preset = 'telescope',
+          },
+          actions = {
+            remove_from_harpoon = function(picker)
+              local items = picker:selected({ fallback = true })
+              for _, item in ipairs(items) do
+                vim.notify(item.idx)
+                -- harpoon:list():remove(item.value)
+              end
+            end
+          },
+          win     = {
+            input = {
+              keys = {
+                ["d"] = { "remove_from_harpoon", mode = { "n" }, desc = "Remove item from Harpoon" }
+              }
+            }
+          },
+          format  = "file",
+          finder  = function()
+            local items = {}
+            for _, item in ipairs(harpoon_files.items) do
+              items[#items + 1] = {
+                file = item.value,
+                text = item.value,
+              }
+            end
+            return items
+          end,
+        })
+      end
+      toggle_snack_picker(harpoon:list())
+    end,
+    desc = "Find Harpoon list",
+  }
 })
 
 -- Notifier key map

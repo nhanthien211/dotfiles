@@ -15,31 +15,38 @@ return {
         enabled = true,
         sources = {
           explorer = {
-            layout = "custom_file_exlorer"
+            win = {
+              input = {
+                title = ""
+              }
+            }
+            -- or provide completely different layout
+            -- layout = "custom_file_exlorer"
           }
         },
 
         layouts = {
-          custom_file_exlorer = {
-            preview = false,
-            layout = {
-              backdrop = false,
-              width = 40,
-              min_width = 40,
-              height = 0,
-              position = "left",
-              border = "none",
-              box = "vertical",
-              {
-                win = "input",
-                height = 1,
-                border = "rounded",
-                title_pos = "center",
-              },
-              { win = "list",    border = "none" },
-              { win = "preview", title = "{preview}", height = 0.4, border = "top" },
-            },
-          }
+          -- INFO: define custom layout to be use
+          -- custom_file_exlorer = {
+          --   preview = false,
+          --   layout = {
+          --     backdrop = false,
+          --     width = 40,
+          --     min_width = 40,
+          --     height = 0,
+          --     position = "left",
+          --     border = "none",
+          --     box = "vertical",
+          --     {
+          --       win = "input",
+          --       height = 1,
+          --       border = "rounded",
+          --       title_pos = "center",
+          --     },
+          --     { win = "list",    border = "none" },
+          --     { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+          --   },
+          -- }
         },
         layout = {
           cycle = true, --- Use the default layout or vertical if the window is too narrow
