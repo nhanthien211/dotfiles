@@ -1,29 +1,27 @@
 -- Auto show diagnostic on hover
-_G.LspDiagnosticsPopupHandler = function()
+local function show_diagnostics_on_hover()
   local current_cursor = vim.api.nvim_win_get_cursor(0)
   local last_popup_cursor = vim.w.lsp_diagnostics_last_cursor or { nil, nil }
 
-  -- Show the popup diagnostics window,
-  -- but only once for the current cursor location (unless moved afterwards).
-  if not (current_cursor[1] == last_popup_cursor[1] and current_cursor[2] == last_popup_cursor[2]) then
+  if current_cursor[1] ~= last_popup_cursor[1] or current_cursor[2] ~= last_popup_cursor[2] then
     vim.w.lsp_diagnostics_last_cursor = current_cursor
 
-    vim.diagnostic.open_float({
-      bufnr = 0,
+    vim.diagnostic.open_float(nil, {
       focusable = false,
       border = "rounded",
-      source = true,
+      source = "always",
       prefix = " ",
       scope = "cursor",
     })
   end
 end
-vim.cmd([[
-augroup LSPDiagnosticsOnHover
-  autocmd!
-  autocmd CursorHold *   lua _G.LspDiagnosticsPopupHandler()
-augroup END
-]])
+
+vim.api.nvim_create_augroup("LSPDiagnosticsOnHover", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = "LSPDiagnosticsOnHover",
+  pattern = "*",
+  callback = show_diagnostics_on_hover,
+})
 
 -- Auto linting
 local lint = require("lint")
@@ -70,5 +68,73 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   desc = "Enable diagnostics when leaving insert mode",
   callback = function(e)
     vim.diagnostic.enable(true, { e.buf })
+  end,
+})
+
+-- Restore cursor to last edition session position
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function(args)
+    local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+    local line_count = vim.api.nvim_buf_line_count(args.buf)
+    if mark[1] > 0 and mark[1] <= line_count then
+      vim.cmd('normal! g`"zz')
+    end
+  end,
+})
+
+-- Dim inactive windows
+-- local last_win_id = nil
+vim.cmd("highlight default DimInactiveWindows guifg=#666666")
+
+-- When leaving a window, set all highlight groups to a "dimmed" hl_group
+vim.api.nvim_create_autocmd({ "WinLeave" }, {
+  callback = function()
+    local highlights = {}
+    for hl, _ in pairs(vim.api.nvim_get_hl(0, {})) do
+      table.insert(highlights, hl .. ":DimInactiveWindows")
+    end
+    vim.wo.winhighlight = table.concat(highlights, ",")
+    -- last_win_id = vim.api.nvim_get_current_win()
+  end,
+})
+
+-- When entering a window, restore all highlight groups to original
+vim.api.nvim_create_autocmd({ "WinEnter" }, {
+  callback = function()
+    vim.wo.winhighlight = ""
+
+    -- if last_win_id then
+    --   local lastBuf = vim.api.nvim_win_get_buf(last_win_id)
+    --   local lastBufType = vim.bo[lastBuf].buftype
+    --   local currentBufType = vim.bo.buftype
+    --   vim.notify(currentBufType)
+    --   if lastBufType == "" and currentBufType == 'prompt' then
+    --     vim.wo[last_win_id].winhighlight = ""
+    --   end
+    --   last_win_id = nil
+    -- end
+  end,
+})
+
+-- Close on "q" for some popup
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "help", "startuptime", "lspinfo", "checkhealth", "lazy", "mason", },
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, "n", "q", ":close<CR>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", ":close<CR>", { noremap = true, silent = true })
+
+    -- for win with input
+    -- vim.api.nvim_buf_set_keymap(0, "i", "<ESC>", "<C-o>:close<CR>", { noremap = true, silent = true })
+    vim.bo.buflisted = false
+  end,
+})
+
+-- Help split to right
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Automatically Split help Buffers to the right with 30% width",
+  pattern = "help",
+  callback = function()
+    vim.cmd("wincmd L")                                             -- Move the help buffer to the right
+    vim.cmd("vertical resize " .. math.floor(vim.o.columns * 0.35)) -- Resize to 30% of total width
   end,
 })

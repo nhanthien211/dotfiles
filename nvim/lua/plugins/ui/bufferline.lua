@@ -2,6 +2,7 @@ return {
   -- Plugin for tab ui
   {
     "akinsho/bufferline.nvim",
+    enabled = false,
     version = "*",
     event = "VeryLazy",
     dependencies = {
