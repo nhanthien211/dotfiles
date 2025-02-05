@@ -36,12 +36,14 @@ wk.add({
         end
 
         Snacks.picker.pick({
-          title   = 'Harpoon',
-          live    = true,
-          layout  = {
+          title         = 'Harpoon',
+          source        = 'files',
+          live          = true,
+          supports_live = true,
+          layout        = {
             preset = 'telescope',
           },
-          actions = {
+          actions       = {
             remove_from_harpoon = function(picker)
               local items = picker:selected({ fallback = true })
               for _, item in ipairs(items) do
@@ -50,15 +52,14 @@ wk.add({
               end
             end
           },
-          win     = {
+          win           = {
             input = {
               keys = {
                 ["d"] = { "remove_from_harpoon", mode = { "n" }, desc = "Remove item from Harpoon" }
               }
             }
           },
-          format  = "file",
-          finder  = function()
+          finder        = function()
             local items = {}
             for _, item in ipairs(harpoon_files.items) do
               items[#items + 1] = {
@@ -68,6 +69,7 @@ wk.add({
             end
             return items
           end,
+          transform     = "^.-#(.*)$"
         })
       end
       toggle_snack_picker(harpoon:list())
