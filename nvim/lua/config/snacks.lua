@@ -4,16 +4,16 @@ local wk = require('which-key')
 wk.add({
   { "<leader>f",  group = "Find" },
   -- Search
-  { "<leader>ff", function() Snacks.picker.files() end,                desc = "Find files", },
-  { "<leader>fc", function() Snacks.picker.colorschemes() end,         desc = "Find theme" },
-  { "<leader>fw", function() Snacks.picker.grep() end,                 desc = "Find words" },
-  { "<leader>fW", function() Snacks.picker.grep_word() end,            desc = "Find current word",   mode = { "n", "v" } },
-  { "<leader>fi", function() Snacks.picker.diagnostics() end,          desc = "Find diagnostics" },
-  { "<leader>fk", function() Snacks.picker.keymaps() end,              desc = "Find keymaps" },
-  { "<leader>fl", function() Snacks.picker.resume() end,               desc = "Find last" },
-  { "<leader>fp", function() Snacks.picker.projects() end,             desc = "Find projects" },
-  { "<leader>ft", function() Snacks.picker.todo_comments() end,        desc = "Find comment tag" },
-  { "<leader>fb", function() Snacks.picker.buffers() end,              desc = "Find buffer" },
+  { "<leader>ff", function() Snacks.picker.files() end,                desc = "Find Files", },
+  { "<leader>fc", function() Snacks.picker.colorschemes() end,         desc = "Find Theme" },
+  { "<leader>fw", function() Snacks.picker.grep() end,                 desc = "Find Words" },
+  { "<leader>fW", function() Snacks.picker.grep_word() end,            desc = "Find Current word",   mode = { "n", "v" } },
+  { "<leader>fi", function() Snacks.picker.diagnostics() end,          desc = "Find Diagnostics" },
+  { "<leader>fk", function() Snacks.picker.keymaps() end,              desc = "Find Keymaps" },
+  { "<leader>fl", function() Snacks.picker.resume() end,               desc = "Find Last" },
+  { "<leader>fp", function() Snacks.picker.projects() end,             desc = "Find Projects" },
+  { "<leader>ft", function() Snacks.picker.todo_comments() end,        desc = "Find Comment tag" },
+  { "<leader>fb", function() Snacks.picker.buffers() end,              desc = "Find Buffer" },
 
   -- LSP
   { "<leader>fd", function() Snacks.picker.lsp_definitions() end,      desc = "Find Definition" },
@@ -26,53 +26,41 @@ wk.add({
   {
     "<leader>fh",
     function()
-      -- basic telescope configuration
       local harpoon = require("harpoon")
 
-      local function toggle_snack_picker(harpoon_files)
-        local file_paths = {}
-        for _, item in ipairs(harpoon_files.items) do
-          table.insert(file_paths, item.value)
-        end
-
-        Snacks.picker.pick({
-          title         = 'Harpoon',
-          source        = 'files',
-          live          = true,
-          supports_live = true,
-          layout        = {
-            preset = 'telescope',
-          },
-          actions       = {
-            remove_from_harpoon = function(picker)
-              local items = picker:selected({ fallback = true })
-              for _, item in ipairs(items) do
-                vim.notify(item.idx)
-                -- harpoon:list():remove(item.value)
+      Snacks.picker.files({
+        title   = 'Harpoon',
+        actions = {
+          remove_from_harpoon = function(picker)
+            local items = picker:selected({ fallback = true })
+            Snacks.picker.select({ "Yes", "No" }, { prompt = "Remove from Harpoon?" }, function(_, idx)
+              if idx == 1 then
+                for _, item in ipairs(items) do
+                  harpoon:list():remove_at(item.idx)
+                  picker:find()
+                end
               end
-            end
-          },
-          win           = {
-            input = {
-              keys = {
-                ["d"] = { "remove_from_harpoon", mode = { "n" }, desc = "Remove item from Harpoon" }
-              }
+            end)
+          end
+        },
+        win     = {
+          input = {
+            keys = {
+              ["<C-d>"] = { "remove_from_harpoon", mode = { "i", "n" }, desc = "Remove item from Harpoon" }
             }
-          },
-          finder        = function()
-            local items = {}
-            for _, item in ipairs(harpoon_files.items) do
-              items[#items + 1] = {
-                file = item.value,
-                text = item.value,
-              }
-            end
-            return items
-          end,
-          transform     = "^.-#(.*)$"
-        })
-      end
-      toggle_snack_picker(harpoon:list())
+          }
+        },
+        finder  = function()
+          local items = {}
+          for _, item in ipairs(harpoon:list().items) do
+            items[#items + 1] = {
+              file = item.value,
+              text = item.value,
+            }
+          end
+          return items
+        end,
+      })
     end,
     desc = "Find Harpoon list",
   }

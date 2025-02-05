@@ -76,13 +76,13 @@ wk.add({
     },
   },
 
-  { "<leader>g", group = "Trouble", icon = '' },
+  { "<leader>g",  group = "Trouble" },
   -- LSP
-  { "<leader>gd", "<Cmd>Trouble lsp_definitions toggle<CR>", desc = "Show definition" },
+  { "<leader>gd", "<Cmd>Trouble lsp_definitions toggle<CR>",      desc = "Show definition" },
   { "<leader>gt", "<Cmd>Trouble lsp_type_definitions toggle<CR>", desc = "Show type definition" },
-  { "<leader>gi", "<Cmd>Trouble lsp_implementations toggle<CR>", desc = "Show implementation" },
-  { "<leader>gr", "<Cmd>Trouble lsp_references toggle<CR>", desc = "Show reference" },
-  { "<leader>gD", "<Cmd>Trouble lsp_declarations toggle<CR>", desc = "Show declaration" },
+  { "<leader>gi", "<Cmd>Trouble lsp_implementations toggle<CR>",  desc = "Show implementation" },
+  { "<leader>gr", "<Cmd>Trouble lsp_references toggle<CR>",       desc = "Show reference" },
+  { "<leader>gD", "<Cmd>Trouble lsp_declarations toggle<CR>",     desc = "Show declaration" },
 
   {
     -- Haproon
@@ -102,13 +102,6 @@ wk.add({
       end,
       desc = "Clear Harpoon",
     },
-    {
-      "<leader>hs",
-      function()
-        local harpoon = require("harpoon")
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end
-    }
   },
 
   -- Display

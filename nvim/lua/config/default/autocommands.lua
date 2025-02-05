@@ -84,37 +84,37 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Dim inactive windows
 -- local last_win_id = nil
-vim.cmd("highlight default DimInactiveWindows guifg=#666666")
-
--- When leaving a window, set all highlight groups to a "dimmed" hl_group
-vim.api.nvim_create_autocmd({ "WinLeave" }, {
-  callback = function()
-    local highlights = {}
-    for hl, _ in pairs(vim.api.nvim_get_hl(0, {})) do
-      table.insert(highlights, hl .. ":DimInactiveWindows")
-    end
-    vim.wo.winhighlight = table.concat(highlights, ",")
-    -- last_win_id = vim.api.nvim_get_current_win()
-  end,
-})
-
--- When entering a window, restore all highlight groups to original
-vim.api.nvim_create_autocmd({ "WinEnter" }, {
-  callback = function()
-    vim.wo.winhighlight = ""
-
-    -- if last_win_id then
-    --   local lastBuf = vim.api.nvim_win_get_buf(last_win_id)
-    --   local lastBufType = vim.bo[lastBuf].buftype
-    --   local currentBufType = vim.bo.buftype
-    --   vim.notify(currentBufType)
-    --   if lastBufType == "" and currentBufType == 'prompt' then
-    --     vim.wo[last_win_id].winhighlight = ""
-    --   end
-    --   last_win_id = nil
-    -- end
-  end,
-})
+-- vim.cmd("highlight default DimInactiveWindows guifg=#666666")
+--
+-- -- When leaving a window, set all highlight groups to a "dimmed" hl_group
+-- vim.api.nvim_create_autocmd({ "WinLeave" }, {
+--   callback = function()
+--     local highlights = {}
+--     for hl, _ in pairs(vim.api.nvim_get_hl(0, {})) do
+--       table.insert(highlights, hl .. ":DimInactiveWindows")
+--     end
+--     vim.wo.winhighlight = table.concat(highlights, ",")
+--     -- last_win_id = vim.api.nvim_get_current_win()
+--   end,
+-- })
+--
+-- -- When entering a window, restore all highlight groups to original
+-- vim.api.nvim_create_autocmd({ "WinEnter" }, {
+--   callback = function()
+--     vim.wo.winhighlight = ""
+--
+--     -- if last_win_id then
+--     --   local lastBuf = vim.api.nvim_win_get_buf(last_win_id)
+--     --   local lastBufType = vim.bo[lastBuf].buftype
+--     --   local currentBufType = vim.bo.buftype
+--     --   vim.notify(currentBufType)
+--     --   if lastBufType == "" and currentBufType == 'prompt' then
+--     --     vim.wo[last_win_id].winhighlight = ""
+--     --   end
+--     --   last_win_id = nil
+--     -- end
+--   end,
+-- })
 
 -- Close on "q" for some popup
 vim.api.nvim_create_autocmd("FileType", {
@@ -129,7 +129,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Help split to right
+-- Help split auto to right
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Automatically Split help Buffers to the right with 30% width",
   pattern = "help",
