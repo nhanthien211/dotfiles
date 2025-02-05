@@ -4,12 +4,13 @@ return {
     lazy = true,
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",      -- integration with lsp config
-      "hrsh7th/cmp-buffer",        -- source for text in buffer
-      "hrsh7th/cmp-path",          -- source for file system path
-      "L3MON4D3/LuaSnip",          -- snippet engine
-      "saadparwaiz1/cmp_luasnip",  -- for autocompletion
-      "rafamadriz/friendly-snippets", -- useful snippets from vs code
+      "hrsh7th/cmp-nvim-lsp",                -- integration with lsp config
+      "hrsh7th/cmp-nvim-lsp-signature-help", -- integration with function signature
+      "hrsh7th/cmp-buffer",                  -- source for text in buffer
+      "hrsh7th/cmp-path",                    -- source for file system path
+      "L3MON4D3/LuaSnip",                    -- snippet engine
+      "saadparwaiz1/cmp_luasnip",            -- for autocompletion
+      "rafamadriz/friendly-snippets",        -- useful snippets from vs code
     },
     config = function()
       local cmp = require("cmp")
@@ -73,7 +74,7 @@ return {
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-          ["<C-e>"] = cmp.mapping.abort(),   -- close completion window
+          ["<C-e>"] = cmp.mapping.abort(),        -- close completion window
           ["<CR>"] = cmp.mapping({
             i = function(fallback)
               if cmp.visible() and cmp.get_active_entry() then
@@ -88,9 +89,10 @@ return {
         }),
         -- sources for autocompletion
         sources = cmp.config.sources({
-          { name = "nvim_lsp" }, -- lsp
-          { name = "luasnip" }, -- snippets
-          { name = "path" }, -- file system paths
+          { name = "nvim_lsp" },                -- lsp
+          { name = 'nvim_lsp_signature_help' }, -- signature
+          { name = "luasnip" },                 -- snippets
+          { name = "path" },                    -- file system paths
         }),
       })
     end,

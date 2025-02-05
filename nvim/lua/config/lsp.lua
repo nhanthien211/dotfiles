@@ -1,14 +1,3 @@
--- This is to enable float border
--- local border = {
---   { "┌", "FloatBorder" },
---   { "─", "FloatBorder" },
---   { "┐", "FloatBorder" },
---   { "│", "FloatBorder" },
---   { "┘", "FloatBorder" },
---   { "─", "FloatBorder" },
---   { "└", "FloatBorder" },
---   { "│", "FloatBorder" },
--- }
 -------------------------------------------------------------------------------------------------------------------
 
 -- change lsp icons
@@ -21,17 +10,12 @@ for name, icon in pairs(symbols) do
 end
 
 -------------------------------------------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------------------------------------------
-
 -- Change prefix character
 vim.diagnostic.config({
   virtual_text = false,
   float = { border = 'rounded' },
   update_in_insert = false,
 })
-
--------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------
 -- Change compeletion icons
@@ -42,9 +26,6 @@ for i, kind in ipairs(kinds) do
 end
 
 -------------------------------------------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------------------------------------------
-
 -- LSP and CMP integration
 local lspToMasonMap = {
   lua_ls = "lua-language-server",
@@ -68,11 +49,10 @@ serverConfigs.lua_ls = {
   },
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local lspconfig = require("lspconfig")
-
--- This is to enable nvim-ufo
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- This is to enable nvim-ufo use LSP
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
@@ -101,6 +81,7 @@ local on_attatch = function(client)
   end
 end
 
+local lspconfig = require("lspconfig")
 for lsp, serverConfig in pairs(serverConfigs) do
   serverConfig.capabilities = capabilities
   serverConfig.handlers = handlers
