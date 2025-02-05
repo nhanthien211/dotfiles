@@ -37,8 +37,8 @@ wk.add({
               if idx == 1 then
                 for _, item in ipairs(items) do
                   harpoon:list():remove_at(item.idx)
-                  picker:find()
                 end
+                picker:find()
               end
             end)
           end
