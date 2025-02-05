@@ -88,7 +88,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-
 -- Dim inactive windows
 -- local last_win_id = nil
 -- vim.cmd("highlight default DimInactiveWindows guifg=#666666")

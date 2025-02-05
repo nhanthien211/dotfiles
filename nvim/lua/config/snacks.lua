@@ -160,3 +160,15 @@ wk.add({
     desc = "Go to line: "
   }
 })
+
+-- Buffers
+wk.add({
+  {
+    "<leader>w",
+    function()
+      Snacks.bufdelete(0)
+    end,
+    desc = "Close buffer",
+    hidden = true
+  },
+})
