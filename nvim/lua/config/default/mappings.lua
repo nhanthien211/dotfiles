@@ -2,13 +2,15 @@ local map = vim.keymap.set
 local silent = { silent = true }
 
 ------TRADITIONAL KEYBINDING--------
-
+-- Save, undo, redo, comment, select al
 map({ "i", "n" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 map({ "i", "n" }, "<C-z>", "<cmd>u<cr>", { desc = "Undo" })
 map({ "i", "n" }, "<C-r>", "<cmd>redo<cr>", { desc = "Redo" })
 map("n", "<C-c>", "gcc", { desc = "Comment line", remap = true })
 map("i", "<C-c>", "<ESC>gcci", { desc = "Comment line", remap = true })
 map("v", "<C-c>", "gc", { desc = "Comment block", remap = true })
+map("n", "<C-a>", "ggVG", silent)
+------------------------------------
 
 -- Start new line from any cursor position
 map("i", "<S-CR>", "<C-o>o", { silent = true, desc = "Insert line under" })
@@ -19,6 +21,7 @@ map("n", "[<Leader>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silent = tru
 map("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move line up" })
 map("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move line down" })
 
+-- Smarted hjkl
 map("n", "H", "^", { silent = true, desc = "Move to begnning" })
 map("n", "L", "$", { silent = true, desc = "Move to end" })
 map("n", "J", "+", { silent = true, desc = "Move to next line first char" })
@@ -34,9 +37,6 @@ map("v", "<S-Up>", "k", silent)
 map("v", "<S-Down>", "j", silent)
 map("v", "<S-left>", "h", silent)
 map("v", "<S-right>", "l", silent)
-
--- Select all
-map("n", "<C-a>", "ggVG", silent)
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
