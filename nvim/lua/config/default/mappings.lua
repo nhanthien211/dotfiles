@@ -6,6 +6,9 @@ local silent = { silent = true }
 map({ "i", "n" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 map({ "i", "n" }, "<C-z>", "<cmd>u<cr>", { desc = "Undo" })
 map({ "i", "n" }, "<C-r>", "<cmd>redo<cr>", { desc = "Redo" })
+map("n", "<C-c>", "gcc", { desc = "Comment line", remap = true })
+map("i", "<C-c>", "<ESC>gcci", { desc = "Comment line", remap = true })
+map("v", "<C-c>", "gc", { desc = "Comment block", remap = true })
 
 -- Start new line from any cursor position
 map("i", "<S-CR>", "<C-o>o", { silent = true, desc = "Insert line under" })
