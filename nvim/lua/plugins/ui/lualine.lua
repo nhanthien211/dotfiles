@@ -1,4 +1,4 @@
-local colors = require("catppuccin.palettes.frappe")
+local colors = require("catppuccin.palettes").get_palette()
 local icons = require("config.icons")
 
 local space = {
@@ -8,9 +8,29 @@ local space = {
   color = { bg = "NONE" }
 }
 
+local modes = {
+  "mode",
+  separator = { left = "", right = "" },
+}
 local filename = {
   "filename",
-  color = { bg = colors.mauve, fg = "#000000", gui = "bold" },
+  color = function()
+    local bgColor = colors.subtext0
+    local fgColor = "#000000"
+    if vim.bo.modified then
+      bgColor = colors.peach
+    end
+    if vim.bo.modifiable == false or vim.bo.readonly == true then
+      bgColor = colors.overlay1
+    end
+    return { bg = bgColor, fg = fgColor, gui = "bold" }
+  end,
+  symbols = {
+    modified = '', -- Text to show when the file is modified.
+    readonly = '', -- Text to show when the file is non-modifiable or readonly.
+    unnamed  = '󰡯', -- Text to show for unnamed buffers.
+    newfile  = '󰝒', -- Text to show for newly created file before first write
+  },
   separator = { left = "", right = "" },
 }
 
@@ -18,26 +38,22 @@ local branch = {
   "branch",
   icon = "",
   separator = { left = "", right = "" },
-  color = { bg = colors.text, fg = "#000000", guid = "bold" }
+  color = { bg = colors.flamingo, fg = "#000000", guid = "bold" }
 }
 
 local diff = {
   "diff",
   separator = { left = "", right = "" },
   symbols = { added = icons.git.added, modified = icons.git.modified, removed = icons.git.removed },
-  color = { bg = colors.mantle, guid = "bold" }
+  color = { bg = colors.surface0, guid = "bold" }
 }
 
-local modes = {
-  "mode",
-  separator = { left = "", right = "" },
-}
 local dia = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
   symbols = { error = icons.diagnostics.error, warn = icons.diagnostics.warn, info = icons.diagnostics.info, hint = icons.diagnostics.hint },
   separator = { left = "", right = "" },
-  color = { bg = colors.mantle, fg = "NONE" }
+  color = { bg = colors.surface0, fg = "NONE" }
 }
 
 local lsp = {
@@ -59,7 +75,7 @@ local lsp = {
     return table.concat(buf_client_names, ', ')
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = colors.subtext1, gui = "bold" }
+  color = { bg = colors.pink, fg = "#000000", gui = "bold" }
 }
 
 local linter = {
@@ -85,7 +101,7 @@ local linter = {
     return ""
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = colors.subtext1, gui = "bold" }
+  color = { bg = colors.pink, fg = "#000000", gui = "bold" }
 
 }
 
@@ -108,7 +124,7 @@ local formatter = {
     end
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = colors.subtext1, gui = "bold" }
+  color = { bg = colors.pink, fg = "#000000", gui = "bold" }
 }
 
 return {
@@ -124,14 +140,13 @@ return {
           disabled_filetypes = { statusline = { "snacks_dashboard" } },
           always_divide_middle = true,
         },
-
         sections = {
           lualine_a = { modes },
           lualine_b = { space },
-          lualine_c = { filename, space, branch, diff, space, dia },
-          lualine_x = { space },
-          lualine_y = { space },
-          lualine_z = { formatter, linter, lsp }
+          lualine_c = { branch, space, filename, space, diff, space, dia },
+          lualine_x = { formatter },
+          lualine_y = { linter },
+          lualine_z = { lsp }
         },
         inactive_sections = {
           lualine_a = {},

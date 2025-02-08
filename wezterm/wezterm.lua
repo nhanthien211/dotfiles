@@ -8,7 +8,7 @@ config.font = wezterm.font_with_fallback {
   { family = 'Monaspace Neon',     weight = 600, harfbuzz_features = { "calt=0", "clig=0", "liga=0" } },
 }
 
-config.font_size = 13
+config.font_size = 14
 config.freetype_load_target = 'Light'
 config.use_fancy_tab_bar = false
 config.status_update_interval = 1000

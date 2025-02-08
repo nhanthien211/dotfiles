@@ -114,6 +114,13 @@ wk.add({
     group = "Reload",
     { "<leader>rl", "<Cmd>LspRestart<CR>", desc = "Reload LSP" },
     {
+      "<leader>rs",
+      function()
+        require('lualine').refresh()
+      end,
+      desc = "Reload Statusline"
+    },
+    {
       "<leader>re",
       function()
         local tmux_session = "mediahub" -- session that we can run this function
