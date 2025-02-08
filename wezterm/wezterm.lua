@@ -17,7 +17,7 @@ config.warn_about_missing_glyphs = true
 
 config.window_padding = {
   left = "0.50cell",
-  right = "0.5cell",
+  right = "0.50cell",
   top = "0.5cell",
   bottom = "0cell",
 }
