@@ -9,7 +9,6 @@ return {
       transparent_background = true,
       integrations = {
         neotree = true,
-        -- snacks = true,
       },
       custom_highlights = function(colors)
         return {
@@ -57,6 +56,8 @@ return {
     },
     config = function(_, opts)
       require("oldworld").setup(opts)
+
+      -- vim.cmd.colorscheme("oldworld")
     end
   }
 }

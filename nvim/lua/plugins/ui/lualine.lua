@@ -2,7 +2,6 @@ local colors = require("catppuccin.palettes.frappe")
 local icons = require("config.icons")
 
 local space = {
-
   function()
     return " "
   end,
@@ -11,7 +10,7 @@ local space = {
 
 local filename = {
   "filename",
-  color = { bg = colors.rosewater, fg = "#000000", gui = "bold" },
+  color = { bg = colors.mauve, fg = "#000000", gui = "bold" },
   separator = { left = "", right = "" },
 }
 
@@ -19,27 +18,26 @@ local branch = {
   "branch",
   icon = "",
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = colors.subtext1, guid = "bold" }
+  color = { bg = colors.text, fg = "#000000", guid = "bold" }
 }
 
 local diff = {
   "diff",
   separator = { left = "", right = "" },
   symbols = { added = icons.git.added, modified = icons.git.modified, removed = icons.git.removed },
-  color = { bg = colors.base, guid = "bold" }
+  color = { bg = colors.mantle, guid = "bold" }
 }
 
 local modes = {
   "mode",
   separator = { left = "", right = "" },
 }
-
 local dia = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
   symbols = { error = icons.diagnostics.error, warn = icons.diagnostics.warn, info = icons.diagnostics.info, hint = icons.diagnostics.hint },
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = "NONE" }
+  color = { bg = colors.mantle, fg = "NONE" }
 }
 
 local lsp = {
@@ -61,7 +59,7 @@ local lsp = {
     return table.concat(buf_client_names, ', ')
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = colors.subtext1 }
+  color = { bg = colors.surface0, fg = colors.subtext1, gui = "bold" }
 }
 
 local linter = {
@@ -87,7 +85,7 @@ local linter = {
     return ""
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = colors.subtext1 }
+  color = { bg = colors.surface0, fg = colors.subtext1, gui = "bold" }
 
 }
 
@@ -110,7 +108,7 @@ local formatter = {
     end
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.surface0, fg = colors.subtext1 }
+  color = { bg = colors.surface0, fg = colors.subtext1, gui = "bold" }
 }
 
 return {
@@ -124,9 +122,7 @@ return {
           -- theme = ,
           globalstatus = true,
           disabled_filetypes = { statusline = { "snacks_dashboard" } },
-          -- component_separators = { left = "", right = "" },
-          -- section_separators = { left = "", right = "" },
-
+          always_divide_middle = true,
         },
 
         sections = {
@@ -135,7 +131,7 @@ return {
           lualine_c = { filename, space, branch, diff, space, dia },
           lualine_x = { space },
           lualine_y = { space },
-          lualine_z = { formatter, space, linter, space, lsp }
+          lualine_z = { formatter, linter, lsp }
         },
         inactive_sections = {
           lualine_a = {},
