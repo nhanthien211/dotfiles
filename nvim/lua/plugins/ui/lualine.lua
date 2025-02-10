@@ -70,6 +70,9 @@ local lsp = {
 
     local buf_client_names = {}
     for _, client in ipairs(buf_clients) do
+      if client.name == "copilot" then
+        break
+      end
       table.insert(buf_client_names, client.name)
     end
 

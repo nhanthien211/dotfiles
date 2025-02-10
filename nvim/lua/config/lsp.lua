@@ -68,7 +68,7 @@ local handlers = {
   })
 }
 
-local on_attatch = function(client)
+local on_attach = function(client)
   local client_name = client.name
   if client_name:match('lua') then
     return
@@ -85,6 +85,6 @@ local lspconfig = require("lspconfig")
 for lsp, serverConfig in pairs(serverConfigs) do
   serverConfig.capabilities = capabilities
   serverConfig.handlers = handlers
-  serverConfig.on_attach = on_attatch
+  serverConfig.on_attach = on_attach
   lspconfig[lsp].setup(serverConfig)
 end
