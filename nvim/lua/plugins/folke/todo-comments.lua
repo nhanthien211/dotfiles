@@ -1,4 +1,5 @@
 return {
+  -- Comment tag highlighting
   {
     "folke/todo-comments.nvim",
     event = "VeryLazy",

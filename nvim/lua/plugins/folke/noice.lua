@@ -8,6 +8,7 @@ return {
       "MunifTanjim/nui.nvim",
     },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("noice").setup({
         presets = {
           inc_rename = true,

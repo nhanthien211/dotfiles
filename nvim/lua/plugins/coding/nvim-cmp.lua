@@ -8,6 +8,7 @@ return {
       "hrsh7th/cmp-nvim-lsp-signature-help", -- integration with function signature
       "hrsh7th/cmp-buffer",                  -- source for text in buffer
       "hrsh7th/cmp-path",                    -- source for file system path
+      "zbirenbaum/copilot-cmp",              -- integration with copilot.lua
       "L3MON4D3/LuaSnip",                    -- snippet engine
       "saadparwaiz1/cmp_luasnip",            -- for autocompletion
       "rafamadriz/friendly-snippets",        -- useful snippets from vs code
