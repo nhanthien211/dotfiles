@@ -22,10 +22,16 @@ map("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move line up" })
 map("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move line down" })
 
 -- Smarted hjkl
-map("n", "H", "^", { silent = true, desc = "Move to begnning" })
-map("n", "L", "$", { silent = true, desc = "Move to end" })
-map("n", "J", "+", { silent = true, desc = "Move to next line first char" })
-map("n", "K", "-", { silent = true, desc = "Move to prev line first char" })
+-- map("n", "H", "^", { silent = true, desc = "Move to begnning" })
+-- map("n", "L", "$", { silent = true, desc = "Move to end" })
+-- map("n", "J", "+", { silent = true, desc = "Move to next line first char" })
+-- map("n", "K", "-", { silent = true, desc = "Move to prev line first char" })
+
+-- Faster Navigation
+map("n", "H", "5h", { silent = true, desc = "which_key_ignore" })
+map("n", "L", "5l", { silent = true, desc = "which_key_ignore" })
+map("n", "J", "10j", { silent = true, desc = "which_key_ignore" })
+map("n", "K", "10k", { silent = true, desc = "which_key_ignore" })
 
 -- Easy select text in edit mode
 map("i", "<S-Up>", "<left><C-o>vk", silent)
