@@ -10,7 +10,7 @@ return {
       input = { enabled = true, },
       scroll = { enabled = true },
       dashboard = { enabled = true },
-
+      image = { enabled = true },
       picker = {
         enabled = true,
         sources = {
@@ -55,7 +55,7 @@ return {
 
         win = {
           preview = {
-            minimal = true
+            minimal = true,
           },
         },
       },
@@ -88,7 +88,6 @@ return {
         timeout = 3000,
         style = "fancy",
       },
-
     },
   }
 }

@@ -8,6 +8,6 @@ require("config.default.autocommands")
 require("config.general")
 require("config.yanky")
 require("config.snacks")
-
+require("config.ai")
 -- LSP settings
 require("config.lsp")

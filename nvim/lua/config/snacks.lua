@@ -1,6 +1,7 @@
 local wk = require('which-key')
+local avante = require("avante.api")
 
--- Picker key map
+-- NOTE: Picker key map
 wk.add({
   { "<leader>f",  group = "Find" },
   -- Search
@@ -33,14 +34,17 @@ wk.add({
         actions = {
           remove_from_harpoon = function(picker)
             local items = picker:selected({ fallback = true })
-            Snacks.picker.select({ "Yes", "No" }, { prompt = "Remove from Harpoon?" }, function(_, idx)
-              if idx == 1 then
-                for _, item in ipairs(items) do
-                  harpoon:list():remove_at(item.idx)
+            Snacks.picker.select(
+              { "Yes", "No" },
+              { prompt = "Remove from Harpoon?" },
+              function(_, idx)
+                if idx == 1 then
+                  for _, item in ipairs(items) do
+                    harpoon:list():remove_at(item.idx)
+                  end
+                  picker:find()
                 end
-                picker:find()
-              end
-            end)
+              end)
           end
         },
         win     = {
@@ -66,19 +70,19 @@ wk.add({
   }
 })
 
--- Notifier key map
+-- NOTE: Notifier key map
 wk.add({
   { "<leader>n",  group = "Notification" },
   { "<leader>ns", function() Snacks.notifier.show_history() end, desc = "Show notification history" },
   { "<leader>nh", function() Snacks.notifier.hide() end,         desc = "Dismiss all notifcations" },
 })
 
--- Explorer
+-- NOTE: Explorer
 wk.add({
   { "<c-e>", function() Snacks.picker.explorer() end, desc = "Open file explorer" }
 })
 
--- Toggle key map
+-- NOTE: Toggle key map
 -----------------Toggle LSP diagnostic helper functions--------------------------------------------------------
 local ignore_events = false
 wk.add({
@@ -110,8 +114,6 @@ function ToggleLspDiagnostic()
   end
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
-
--------------------------------------------------------------------------------------------------------------------
 
 Snacks.toggle.words():map("<leader>tw")
 Snacks.toggle.inlay_hints():map("<leader>th")
@@ -145,7 +147,7 @@ Snacks.toggle({
   end
 }):map("<leader>tl")
 
--- Input
+-- NOTE: Input
 wk.add({
   {
     "<C-g>",
@@ -161,7 +163,7 @@ wk.add({
   }
 })
 
--- Buffers
+-- NOTE: Buffers
 wk.add({
   {
     "<leader>w",
