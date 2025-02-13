@@ -8,7 +8,7 @@ wk.add({
   { "<leader>af", function() avante.focus() end,                    desc = "Avante: focus",             mode = "n" },
   { "<leader>ae", function() avante.edit() end,                     desc = "Avante: edit",              mode = "v" },
   -- Toggle
-  { "<leader>ar", function() avante.toggle() end,                   desc = "Avante: toggle chat",       mode = "n" },
+  { "<leader>at", function() avante.toggle() end,                   desc = "Avante: toggle chat",       mode = "n" },
   { "<leader>ad", function() avante.toggle.debug() end,             desc = "Avante: toggle debug",      mode = "n" },
   { "<leader>ah", function() avante.toggle.hint() end,              desc = "Avante: toggle hint",       mode = "n" },
   { "<leader>as", function() avante.toggle.suggestion() end,        desc = "Avante: toggle suggestion", mode = "n" },

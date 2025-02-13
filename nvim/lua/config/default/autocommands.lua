@@ -48,9 +48,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       async = false,
       timeout_ms = 500,
     })
-
-    -- if not string.find(vim.api.nvim_buf_get_name(0), "node_modules", 1, true) then
-    --       end
   end,
 })
 
@@ -124,7 +121,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Close on "q" for some popup
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "startuptime", "lspinfo", "checkhealth", "lazy", "mason", },
+  pattern = { "help", "startuptime", "lspinfo", "checkhealth", "lazy", "mason", "AvanteInput" },
   callback = function()
     vim.api.nvim_buf_set_keymap(0, "n", "q", ":close<CR>", { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", ":close<CR>", { noremap = true, silent = true })
