@@ -15,6 +15,16 @@ local modes = {
 
 local filename = {
   "filename",
+  fmt = function(name)
+    local statusline = require('arrow.statusline')
+    local bufnr = vim.api.nvim_get_current_buf()
+    local index = statusline.is_on_arrow_file(bufnr)
+
+    if index then
+      return "󰣉 " .. name
+    end
+    return name
+  end,
   color = function()
     local bgColor = colors.subtext0
     local fgColor = "#000000"
@@ -27,10 +37,10 @@ local filename = {
     return { bg = bgColor, fg = fgColor, gui = "bold" }
   end,
   symbols = {
-    modified = '', -- Text to show when the file is modified.
-    readonly = '󰷤', -- Text to show when the file is non-modifiable or readonly.
-    unnamed  = '󰡯', -- Text to show for unnamed buffers.
-    newfile  = '󰝒', -- Text to show for newly created file before first write
+    modified = '', -- text to show when the file is modified
+    readonly = '󰷤', -- text to show for readonly buffers
+    unnamed  = '󰡯', -- text for unnamed buffers
+    newfile  = '󰝒', -- text for new files before the first write
   },
   separator = { left = "", right = "" },
 }
@@ -143,6 +153,8 @@ return {
           globalstatus = true,
           disabled_filetypes = { statusline = { "snacks_dashboard" } },
           always_divide_middle = true,
+          section_separators = { left = '', right = '' },
+          component_separators = { left = '', right = '' }
         },
         sections = {
           lualine_a = { modes },
