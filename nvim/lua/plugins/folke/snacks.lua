@@ -11,6 +11,7 @@ return {
       scroll = { enabled = true },
       dashboard = { enabled = true },
       image = { enabled = true },
+      explorer = { enabled = true },
       picker = {
         enabled = true,
         sources = {

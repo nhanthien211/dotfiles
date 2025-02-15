@@ -9,6 +9,7 @@ return {
       transparent_background = true,
       integrations = {
         neotree = true,
+        snacks = true
       },
       custom_highlights = function(colors)
         return {
