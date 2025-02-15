@@ -12,6 +12,9 @@ return {
       dashboard = { enabled = true },
       image = { enabled = true },
       explorer = { enabled = true },
+      notifier = { enabled = true, },
+      words = { enabled = true, },
+
       picker = {
         enabled = true,
         sources = {
@@ -66,10 +69,6 @@ return {
           open = true, -- show open fold icons
         },
       },
-      words = {
-        enabled = true,
-        debounce = 200,
-      },
 
       indent = {
         enabled = true,
@@ -84,11 +83,7 @@ return {
           }
         }
       },
-      notifier = {
-        enabled = true,
-        timeout = 3000,
-        style = "fancy",
-      },
+
     },
   }
 }

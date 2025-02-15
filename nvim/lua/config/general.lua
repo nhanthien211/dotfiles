@@ -84,29 +84,9 @@ wk.add({
   { "<leader>gr", "<Cmd>Trouble lsp_references toggle<CR>",       desc = "Show reference" },
   { "<leader>gD", "<Cmd>Trouble lsp_declarations toggle<CR>",     desc = "Show declaration" },
 
-  {
-    -- Haproon
-    "<leader>h",
-    group = "Harpoon",
-    {
-      "<leader>ha",
-      function()
-        require("harpoon"):list():add()
-      end,
-      desc = "Add to Harpoon",
-    },
-    {
-      "<leader>hc",
-      function()
-        require("harpoon"):list():clear()
-      end,
-      desc = "Clear Harpoon",
-    },
-  },
-
   -- Display
-  { "<leader>l", "<Cmd>Lazy<CR>",  desc = "Display LazyVim" },
-  { "<leader>m", "<Cmd>Mason<CR>", desc = "Display Mason" },
+  { "<leader>l",  "<Cmd>Lazy<CR>",                                desc = "Display LazyVim" },
+  { "<leader>m",  "<Cmd>Mason<CR>",                               desc = "Display Mason" },
 
   -- Reload
   {
