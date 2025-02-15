@@ -8,10 +8,13 @@ return {
       auto_close = false,
       auto_refresh = false,
       focus = true,
+      follow = false,
       -- default
       action_keys = { -- key mappings for actions in the trouble list
         -- map to {} to remove a mapping, for example:
         -- close = {},
+        r = "refresh",
+        R = "toggle_refresh",
         close = { "q", "<esc>" },                    -- close the list
         cancel = {},                                 -- cancel the preview and get back to your last window / buffer / cursor
         refresh = "r",                               -- manually refresh

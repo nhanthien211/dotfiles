@@ -1,5 +1,4 @@
 local wk = require('which-key')
-local avante = require("avante.api")
 
 -- NOTE: Picker key map
 wk.add({
