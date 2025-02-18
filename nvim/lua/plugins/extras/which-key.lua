@@ -14,7 +14,8 @@ return {
           { pattern = "harpoon", icon = '󰉺', color = 'green' },
           { pattern = "reload", icon = '', color = 'orange' },
           { pattern = "notification", icon = '󱥁', color = 'orange' },
-          { pattern = "avante", icon = "󰚩", color = 'red' }
+          { pattern = "avante", icon = "󰚩", color = 'red' },
+          { pattern = "flash", icon = "⚡", },
         }
       }
     },
