@@ -15,6 +15,12 @@ config.status_update_interval = 1000
 config.hide_tab_bar_if_only_one_tab = true
 config.warn_about_missing_glyphs = true
 
+-- config.window_padding = {
+--   left = "0.0cell",
+--   right = "0.0cell",
+--   top = "0.0cell",
+--   bottom = "0cell",
+-- }
 config.window_padding = {
   left = "0.50cell",
   right = "0.50cell",
