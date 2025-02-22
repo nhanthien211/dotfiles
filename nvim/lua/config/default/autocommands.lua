@@ -121,7 +121,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Close on "q" for some popup
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "startuptime", "lspinfo", "checkhealth", "lazy", "mason", "AvanteInput" },
+  pattern = { "help", "startuptime", "lspinfo", "checkhealth", "lazy", "mason", "snacks_notif_history", "AvanteInput" },
   callback = function()
     vim.api.nvim_buf_set_keymap(0, "n", "q", ":close<CR>", { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", ":close<CR>", { noremap = true, silent = true })

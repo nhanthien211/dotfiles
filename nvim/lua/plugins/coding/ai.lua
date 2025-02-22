@@ -36,7 +36,8 @@ return {
     opts = {
       provider = "copilot",
       copilot = {
-        model = "claude-3.5-sonnet",
+        -- model = "claude-3.5-sonnet",
+        model = "o3-mini",
         temperature = 0,
         max_tokens = 8192,
       },
@@ -50,7 +51,7 @@ return {
         enable_token_counting = true, -- Whether to enable token counting. Default to true.
       },
       file_selector = { provider = "snacks", },
-      windows = { width = 40, },
+      windows = { width = 3, },
       hints = { enabled = false },
     },
     build = "make",
