@@ -17,9 +17,9 @@ M.base46 = {
     'statusline',
     'trouble',
     'whichkey',
-    'rainbowdelimiters'
   },
 }
+
 local sep_l = ''
 local sep_r = "%#St_sep_r#" .. '' .. " %#ST_EmptySpace#"
 
@@ -96,7 +96,6 @@ M.ui = {
           return ""
         end
         local bufnr = vim.api.nvim_get_current_buf()
-
         local icons = require("config.icons")
         local err = #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.ERROR })
         local warn = #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.WARN })
@@ -112,12 +111,7 @@ M.ui = {
       end
     }
   },
-  cmp = {
-    icons = true,
-    style = "atom"
-  },
-  lsp = { signature = false },
-  colorify = { enabled = false }
+  colorify = { enabled = false },
 }
 
 return M

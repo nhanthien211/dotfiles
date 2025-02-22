@@ -1,3 +1,5 @@
+-- WARN: currently this is disabled and try nvchad instead
+
 local colors = require("catppuccin.palettes").get_palette()
 local icons = require("config.icons")
 

@@ -21,53 +21,6 @@ wk.add({
   { "<leader>fr", function() Snacks.picker.lsp_references() end,       desc = "Find References",     nowait = true, },
   { "<leader>fI", function() Snacks.picker.lsp_implementations() end,  desc = "Find Implementation" },
   { "<leader>fy", function() Snacks.picker.lsp_type_definitions() end, desc = "Find Type Definition" },
-
-  -- INFO: Deprecated, currently using arrow instead
-  -- Harpoon
-  -- {
-  --   "<leader>fh",
-  --   function()
-  --     local harpoon = require("harpoon")
-  --
-  --     Snacks.picker.files({
-  --       title   = 'Harpoon',
-  --       actions = {
-  --         remove_from_harpoon = function(picker)
-  --           local items = picker:selected({ fallback = true })
-  --           Snacks.picker.select(
-  --             { "Yes", "No" },
-  --             { prompt = "Remove from Harpoon?" },
-  --             function(_, idx)
-  --               if idx == 1 then
-  --                 for _, item in ipairs(items) do
-  --                   harpoon:list():remove_at(item.idx)
-  --                 end
-  --                 picker:find()
-  --               end
-  --             end)
-  --         end
-  --       },
-  --       win     = {
-  --         input = {
-  --           keys = {
-  --             ["<C-d>"] = { "remove_from_harpoon", mode = { "i", "n" }, desc = "Remove item from Harpoon" }
-  --           }
-  --         }
-  --       },
-  --       finder  = function()
-  --         local items = {}
-  --         for _, item in ipairs(harpoon:list().items) do
-  --           items[#items + 1] = {
-  --             file = item.value,
-  --             text = item.value,
-  --           }
-  --         end
-  --         return items
-  --       end,
-  --     })
-  --   end,
-  --   desc = "Find Harpoon list",
-  -- }
 })
 
 -- NOTE: Notifier key map

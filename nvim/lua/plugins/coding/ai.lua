@@ -51,7 +51,7 @@ return {
         enable_token_counting = true, -- Whether to enable token counting. Default to true.
       },
       file_selector = { provider = "snacks", },
-      windows = { width = 3, },
+      windows = { width = 35, },
       hints = { enabled = false },
     },
     build = "make",

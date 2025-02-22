@@ -18,7 +18,7 @@ return {
 
       vim.keymap.set("n", "<leader>fn", function()
         require("nvchad.themes").open()
-      end, { desc = "Find Theme" })
+      end, { desc = "Find base46 theme" })
     end,
   },
 
