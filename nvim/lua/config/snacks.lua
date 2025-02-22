@@ -119,7 +119,7 @@ Snacks.toggle.words():map("<leader>tw")
 Snacks.toggle.inlay_hints():map("<leader>th")
 -- Dignostics
 Snacks.toggle({
-  name = "code diagnostics",
+  name = "Code Diagnostics",
   get = function()
     return vim.diagnostic.is_enabled()
   end,
@@ -129,7 +129,7 @@ Snacks.toggle({
 }):map("<leader>td")
 -- Git
 Snacks.toggle({
-  name = "git line blame",
+  name = "Git Blame",
   get = function()
     return require("gitsigns.config").config.current_line_blame
   end,
@@ -138,7 +138,7 @@ Snacks.toggle({
   end
 }):map("<leader>tb")
 Snacks.toggle({
-  name = "relative line number",
+  name = "Relative Number",
   get = function()
     return vim.wo.relativenumber
   end,
@@ -146,6 +146,15 @@ Snacks.toggle({
     vim.wo.relativenumber = not vim.wo.relativenumber
   end
 }):map("<leader>tl")
+Snacks.toggle({
+  name = "Transparency",
+  get = function()
+    return require("nvconfig").base46.transparency
+  end,
+  set = function()
+    require("base46").toggle_transparency()
+  end
+}):map("<leader>tt")
 
 -- NOTE: Input
 wk.add({

@@ -5,7 +5,7 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      flavour = "frappe",
+      flavour = "mocha",
       transparent_background = true,
       integrations = {
         neotree = true,
@@ -20,7 +20,7 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin") -- default
+      -- vim.cmd.colorscheme("catppuccin") -- default
     end,
   },
 

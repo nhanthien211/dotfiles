@@ -1,8 +1,7 @@
 return {
   {
     "nvchad/base46",
-    enabled = false,
-
+    -- enabled = false,
     lazy = true,
     build = function()
       require("base46").load_all_highlights()
@@ -11,15 +10,20 @@ return {
 
   {
     "nvchad/ui",
-    enabled = false,
+    -- enabled = false,
     lazy = false,
     config = function()
       require "nvchad"
+      vim.cmd.colorscheme("nvchad") -- default
+
+      vim.keymap.set("n", "<leader>fn", function()
+        require("nvchad.themes").open()
+      end, { desc = "find theme" })
     end,
   },
 
   {
     "nvzone/volt",
-    enabled = false,
+    -- enabled = false,
   }
 }

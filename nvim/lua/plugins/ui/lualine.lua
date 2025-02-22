@@ -49,7 +49,7 @@ local branch = {
   "branch",
   icon = "",
   separator = { left = "", right = "" },
-  color = { bg = colors.flamingo, fg = "#000000", guid = "bold" }
+  color = { bg = colors.flamingo, fg = "#000000" }
 }
 
 local diff = {
@@ -77,19 +77,17 @@ local lsp = {
       return ""
     end
 
-
     local buf_client_names = {}
     for _, client in ipairs(buf_clients) do
-      if client.name == "copilot" then
-        break
+      if client.name ~= "copilot" then
+        table.insert(buf_client_names, client.name)
       end
-      table.insert(buf_client_names, client.name)
     end
 
     return table.concat(buf_client_names, ', ')
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.pink, fg = "#000000", gui = "bold" }
+  color = { bg = colors.pink, fg = "#000000", }
 }
 
 local linter = {
@@ -115,8 +113,7 @@ local linter = {
     return ""
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.pink, fg = "#000000", gui = "bold" }
-
+  color = { bg = colors.pink, fg = "#000000", }
 }
 
 local formatter = {
@@ -138,13 +135,13 @@ local formatter = {
     end
   end,
   separator = { left = "", right = "" },
-  color = { bg = colors.pink, fg = "#000000", gui = "bold" }
+  color = { bg = colors.pink, fg = "#000000", }
 }
 
 return {
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    enabled = false,
     event = "VeryLazy",
     config = function()
       require("lualine").setup({

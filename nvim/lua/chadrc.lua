@@ -1,101 +1,65 @@
----@type ThemeName
----@alias ThemeName
----| '"zenburn"'
----| '"yoru"'
----| '"wombat"'
----| '"vscode_light"'
----| '"vscode_dark"'
----| '"vesper"'
----| '"tundra"'
----| '"tomorrow_night"'
----| '"tokyonight"'
----| '"tokyodark"'
----| '"sweetpastel"'
----| '"starlight"'
----| '"solarized_osaka"'
----| '"solarized_light"'
----| '"solarized_dark"'
----| '"seoul256_light"'
----| '"seoul256_dark"'
----| '"rxyhn"'
----| '"jabuti"'
----| '"rosepine-dawn"'
----| '"radium"'
----| '"poimandres"'
----| '"penumbra_light"'
----| '"penumbra_dark"'
----| '"pastelbeans"'
----| '"pastelDark"'
----| '"palenight"'
----| '"oxocarbon"'
----| '"onenord_light"'
----| '"onenord"'
----| '"onedark"'
----| '"one_light"'
----| '"oceanic-next"'
----| '"oceanic-light"'
----| '"obsidian-ember"'
----| '"nord"'
----| '"nightowl"'
----| '"nightlamp"'
----| '"aylin"'
----| '"neofusion"'
----| '"nano-light"'
----| '"mountain"'
----| '"monochrome"'
----| '"monekai"'
----| '"mito-laser"'
----| '"melange"'
----| '"material-lighter"'
----| '"material-deep-ocean"'
----| '"material-darker"'
----| '"kanagawa"'
----| '"aylin"'
----| '"jellybeans"'
----| '"jabuti"'
----| '"horizon"'
----| '"hiberbee"'
----| '"gruvchad"'
----| '"gruvbox_light"'
----| '"gruvbox"'
----| '"github_light"'
----| '"github_dark"'
----| '"gatekeeper"'
----| '"flouromachine"'
----| '"flexoki"'
----| '"flexoki-light"'
----| '"flex-light"'
----| '"falcon"'
----| '"everforest_light"'
----| '"everforest"'
----| '"everblush"'
----| '"embark"'
----| '"eldritch"'
----| '"doomchad"'
----| '"default-light"'
----| '"default-dark"'
----| '"decay"'
----| '"dark_horizon"'
----| '"darcula-dark"'
----| '"chocolate"'
----| '"chadtain"'
----| '"chadracula"'
----| '"chadracula-evondev"'
----| '"catppuccin"'
----| '"carbonfox"'
----| '"blossom_light"'
----| '"bearded-arc"'
----| '"ayu_light"'
----| '"ayu_dark"'
----| '"aylin"'
----| '"ashes"'
----| '"aquarium"'
-
 local M = {}
 
 M.base46 = {
-  theme = "aylin",
+  theme = "catppuccin",
   transparency = true,
+  integrations = {
+    'defaults',
+    'cmp',
+    'devicons',
+    'git',
+    'lsp',
+    'mason',
+    'syntax',
+    'treesitter',
+    'statusline',
+    'trouble',
+    'whichkey'
+  },
+}
+local sep_l = ''
+local sep_r = "%#St_sep_r#" .. '' .. " %#ST_EmptySpace#"
+
+local function gen_block(icon, txt, sep_l_hlgroup, iconHl_group, txt_hl_group)
+  return sep_l_hlgroup .. sep_l .. iconHl_group .. icon .. " " .. txt_hl_group .. " " .. txt .. sep_r
+end
+
+M.ui = {
+  tabufline = {
+    enabled = false
+  },
+  statusline = {
+    enabled = true,
+    theme = "minimal",
+    separator_style = "round",
+    order = {
+      "mode",
+      "file",
+      "git",
+      "diagnostics",
+      "%=",
+      "lsp"
+    },
+    modules = {
+      custome_file = function()
+        local icon = "󰈚"
+        local filename = (vim.fn.expand "%" == "" and "Empty ") or vim.fn.expand "%:t"
+
+        if filename ~= "Empty " then
+          local modified = vim.bo.modified and " +" or ""
+          local readonly = vim.bo.readonly and " 󰌾" or ""
+          return { icon, filename .. modified .. readonly .. " " }
+        end
+        return { icon, filename }
+      end,
+    }
+  },
+  cmp = {
+    icons = true,
+    style = "atom"
+  },
+  lsp = { signature = true },
+  colorify = { enabled = false }
 }
 
 return M
