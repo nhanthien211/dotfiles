@@ -22,8 +22,8 @@ return {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
+      "zbirenbaum/copilot.lua", -- for providers='copilot',
       -- -- Optional
-      -- "zbirenbaum/copilot.lua", -- for providers='copilot',
       -- {
       --   -- Make sure to set this up properly if you have lazy=true
       --   'MeanderingProgrammer/render-markdown.nvim',
@@ -35,11 +35,15 @@ return {
     },
     opts = {
       provider = "copilot",
-      copilot = {
-        -- model = "claude-3.5-sonnet",
-        model = "o3-mini",
-        temperature = 0,
-        max_tokens = 8192,
+      providers = {
+        copilot = {
+          model = "claude-sonnet-4",
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 8192,
+          }
+        },
+
       },
       behaviour = {
         auto_suggestions = false,
