@@ -14,7 +14,7 @@ return {
     lazy = false,
     config = function()
       require "nvchad"
-      vim.cmd.colorscheme("nvchad") -- default
+      -- vim.cmd.colorscheme("nvchad") -- default
 
       vim.keymap.set("n", "<leader>fn", function()
         require("nvchad.themes").open()
@@ -24,6 +24,6 @@ return {
 
   {
     "nvzone/volt",
-    -- enabled = false,
+    enabled = false,
   }
 }

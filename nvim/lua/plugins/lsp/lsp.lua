@@ -11,7 +11,6 @@ return {
             package_pending = "➜",
             package_uninstalled = "✗",
           },
-          border = "rounded",
         },
       })
     end,
@@ -56,14 +55,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
-  },
-
-  {
-    "smjonas/inc-rename.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("inc_rename").setup({})
-    end,
   },
 
   {

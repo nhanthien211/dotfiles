@@ -7,10 +7,6 @@ local function show_diagnostics_on_hover()
     vim.w.lsp_diagnostics_last_cursor = current_cursor
 
     vim.diagnostic.open_float(nil, {
-      focusable = false,
-      border = "rounded",
-      source = "always",
-      prefix = " ",
       scope = "cursor",
     })
   end
@@ -85,6 +81,30 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
+-- Close on "q" for some popup
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "help", "startuptime", "lspinfo", "checkhealth", "lazy", "mason", "snacks_notif_history", "AvanteInput" },
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, "n", "q", ":close<CR>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", ":close<CR>", { noremap = true, silent = true })
+
+    -- for win with input
+    -- vim.api.nvim_buf_set_keymap(0, "i", "<ESC>", "<C-o>:close<CR>", { noremap = true, silent = true })
+    vim.bo.buflisted = false
+  end,
+})
+
+-- Help split auto to right
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Automatically Split help Buffers to the right with 30% width",
+  pattern = "help",
+  callback = function()
+    vim.cmd("wincmd L")                                             -- Move the help buffer to the right
+    vim.cmd("vertical resize " .. math.floor(vim.o.columns * 0.35)) -- Resize to 30% of total width
+  end,
+})
+
+
 -- Dim inactive windows
 -- local last_win_id = nil
 -- vim.cmd("highlight default DimInactiveWindows guifg=#666666")
@@ -118,26 +138,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 --     -- end
 --   end,
 -- })
-
--- Close on "q" for some popup
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "startuptime", "lspinfo", "checkhealth", "lazy", "mason", "snacks_notif_history", "AvanteInput" },
-  callback = function()
-    vim.api.nvim_buf_set_keymap(0, "n", "q", ":close<CR>", { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", ":close<CR>", { noremap = true, silent = true })
-
-    -- for win with input
-    -- vim.api.nvim_buf_set_keymap(0, "i", "<ESC>", "<C-o>:close<CR>", { noremap = true, silent = true })
-    vim.bo.buflisted = false
-  end,
-})
-
--- Help split auto to right
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "Automatically Split help Buffers to the right with 30% width",
-  pattern = "help",
-  callback = function()
-    vim.cmd("wincmd L")                                             -- Move the help buffer to the right
-    vim.cmd("vertical resize " .. math.floor(vim.o.columns * 0.35)) -- Resize to 30% of total width
-  end,
-})

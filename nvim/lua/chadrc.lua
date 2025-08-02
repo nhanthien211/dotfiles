@@ -2,7 +2,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "aquarium",
+  theme = "catppuccin",
   transparency = true,
   integrations = {
     'defaults',
