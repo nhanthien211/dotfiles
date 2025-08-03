@@ -30,6 +30,9 @@ return {
           "prettierd",
           "prettier",
           "stylua",
+          -- lsp
+          "lua-language-server",
+          "yaml-language-server",
         },
       })
     end,
@@ -50,11 +53,6 @@ return {
         },
       })
     end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    event = "VeryLazy",
   },
 
   {

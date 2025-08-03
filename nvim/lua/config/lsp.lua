@@ -81,41 +81,23 @@ M.on_attach = function(client, bufnr)
   -- This is cleaner than global keymaps for LSP functions
 end
 
--- Server configurations
-M.get_server_configs = function()
-  local configs = {
-    lua_ls = {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-            disable = { "trailing-space" },
-          },
-          hint = {
-            enable = true, -- Enable native inlay hints
-          },
-        },
-      },
-    },
-    yamlls = {},
-    ["typescript-tools"] = {}, -- Will be configured by typescript-tools plugin
-  }
-
-  return configs
-end
-
 M.setup_lsp = function()
+  local servers = {
+    "lua_ls",
+    "yamlls",
+    "typescript-tools",
+  }
   local capabilities = M.get_capabilities()
-  local server_configs = M.get_server_configs()
 
-  local lspconfig = require("lspconfig")
+  -- local lspconfig = require("lspconfig")
 
-  for server_name, config in pairs(server_configs) do
-    -- Skip typescript-tools as it's handled by its plugin
+  for _, server_name in ipairs(servers) do
     if server_name ~= "typescript-tools" then
-      config.capabilities = capabilities
-      config.on_attach = M.on_attach
-      lspconfig[server_name].setup(config)
+      vim.lsp.config(server_name, {
+        capabilities = capabilities,
+        on_attach = M.on_attach,
+      })
+      vim.lsp.enable(server_name)
     end
   end
 end

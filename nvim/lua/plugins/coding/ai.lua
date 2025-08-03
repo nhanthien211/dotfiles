@@ -2,6 +2,7 @@ return {
   -- INFO: run `:Copilot auth` on first run
   {
     "zbirenbaum/copilot.lua",
+    enabled = false,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -14,6 +15,7 @@ return {
 
   {
     "yetone/avante.nvim",
+    enabled = false,
     lazy = true,
     event = "VeryLazy",
     version = false,
