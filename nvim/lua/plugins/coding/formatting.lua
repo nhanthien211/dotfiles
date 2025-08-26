@@ -13,6 +13,7 @@ return {
           javascriptreact = { "prettierd" },
           typescriptreact = { "prettierd" },
           json = { "prettier" },
+          swift = { "swiftformat" }
         },
       })
     end,

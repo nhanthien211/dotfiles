@@ -20,7 +20,7 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin") -- default
+      -- vim.cmd.colorscheme("catppuccin") -- default
     end,
   },
 
@@ -60,5 +60,16 @@ return {
 
       -- vim.cmd.colorscheme("oldworld")
     end
+  },
+
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
+    config = function(_, opts)
+      require("onedarkpro").setup(opts)
+
+      vim.cmd.colorscheme("onedark")
+    end
+
   }
 }

@@ -24,6 +24,6 @@ return {
 
   {
     "nvzone/volt",
-    enabled = false,
+    -- enabled = false,
   }
 }

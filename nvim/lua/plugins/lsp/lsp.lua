@@ -56,6 +56,11 @@ return {
   },
 
   {
+    "neovim/nvim-lspconfig",
+    event = "VeryLazy"
+  },
+
+  {
     "axelvc/template-string.nvim",
     event = "InsertEnter",
     ft = {

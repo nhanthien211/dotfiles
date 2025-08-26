@@ -17,7 +17,8 @@ M.setup_diagnostic_icons = function()
     virtual_text = false,
     severity_sort = true,
     float = {
-      focusable = false,
+      focusable = true,
+      source = true,
       prefix = " ",
       border = "rounded",
     },
@@ -76,9 +77,6 @@ M.on_attach = function(client, bufnr)
   if client.supports_method("textDocument/inlayHint") then
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
-
-  -- Setup buffer-local keymaps here if needed
-  -- This is cleaner than global keymaps for LSP functions
 end
 
 M.setup_lsp = function()
@@ -86,11 +84,9 @@ M.setup_lsp = function()
     "lua_ls",
     "yamlls",
     "typescript-tools",
+    "sourcekit",
   }
   local capabilities = M.get_capabilities()
-
-  -- local lspconfig = require("lspconfig")
-
   for _, server_name in ipairs(servers) do
     if server_name ~= "typescript-tools" then
       vim.lsp.config(server_name, {
