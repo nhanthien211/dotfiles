@@ -39,24 +39,24 @@ config.inactive_pane_hsb = {
 }
 config.background = {
   -- the back-most layer, should be image
-  {
-    source = {
-      File = '/Users/ttn/.config/wezterm/wallpaper/neovim-background-3.jpg',
-    },
-    opacity = 1.0,
-  },
-  -- follow by a color layer which on top of the previous image
-  -- set opacity so we can see the image
-  {
-    source = {
-      Gradient = {
-        colors = { '#000000' }
-      }
-    },
-    width = '100%',
-    height = '100%',
-    opacity = 0.7
-  },
+  -- {
+  --   source = {
+  --     File = '/Users/ttn/.config/wezterm/wallpaper/neovim-background-3.jpg',
+  --   },
+  --   opacity = 1.0,
+  -- },
+  -- -- follow by a color layer which on top of the previous image
+  -- -- set opacity so we can see the image
+  -- {
+  --   source = {
+  --     Gradient = {
+  --       colors = { '#000000' }
+  --     }
+  --   },
+  --   width = '100%',
+  --   height = '100%',
+  --   opacity = 0.7
+  -- },
 }
 
 config.window_close_confirmation = 'NeverPrompt'
