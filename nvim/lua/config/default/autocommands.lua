@@ -38,6 +38,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       vim.notify("Never format node modules", vim.log.levels.WARN)
       return
     end
+
+    -- skip .swift files
+    if bufname:match("%.swift$") then
+      return
+    end
+
     require("conform").format({
       bufnr = args.buf,
       lsp_fallback = true,
@@ -104,6 +110,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", { -- enable treesitter highlighting and indents
+  callback = function(args)
+    local filetype = args.match
+    local lang = vim.treesitter.language.get_lang(filetype)
+    if vim.treesitter.language.add(lang) then
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      vim.treesitter.start()
+    end
+  end
+})
 
 -- Dim inactive windows
 -- local last_win_id = nil

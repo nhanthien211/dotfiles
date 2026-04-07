@@ -51,6 +51,8 @@ Note: see `https://coderwall.com/p/pb1uzq/z-shell-colors` for more background co
 `brew install fd`
 - Install `ripgrep`:
 `brew install ripgrep`
+- Install `tree-sitter-cli`
+`brew install tree-sitter-cli`
 - Change syntax suggest color: 
   - `nvim ~/.zshrc`
   - `ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=248'`
