@@ -1,7 +1,7 @@
 local util = require 'lspconfig.util'
 
 return {
-  cmd = { 'sourcekit-lsp' },
+  cmd = { vim.trim(vim.fn.system("xcrun -f sourcekit-lsp")), },
   filetypes = { 'swift', 'objc', 'objcpp', 'c', 'cpp' },
   root_dir = function(bufnr, on_dir)
     local filename = vim.api.nvim_buf_get_name(bufnr)
@@ -13,10 +13,10 @@ return {
       or vim.fs.dirname(vim.fs.find('.git', { path = filename, upward = true })[1])
     )
   end,
-  get_language_id = function(_, ftype)
-    local t = { objc = 'objective-c', objcpp = 'objective-cpp' }
-    return t[ftype] or ftype
-  end,
+  -- get_language_id = function(_, ftype)
+  --   local t = { objc = 'objective-c', objcpp = 'objective-cpp' }
+  --   return t[ftype] or ftype
+  -- end,
   capabilities = {
     workspace = {
       didChangeWatchedFiles = {

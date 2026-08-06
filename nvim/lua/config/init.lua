@@ -3,6 +3,7 @@ require("config.default.options")
 require("config.default.lazy")
 require("config.default.mappings")
 require("config.default.autocommands")
+require("config.default.macros")
 
 -- Mapping
 require("config.general")
