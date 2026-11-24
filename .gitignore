@@ -1,2 +1,5 @@
 .DS_Store
 tpm/
+
+# Herdr mods: written by gpui-shell for editor support, never edited
+herdr-app/mods/*/gpui-kit.d.ts

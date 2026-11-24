@@ -75,6 +75,43 @@ Note: see `https://coderwall.com/p/pb1uzq/z-shell-colors` for more background co
     alias cl="clear"
     ```
 
+## Herdr
+
+1. Installation: `curl -fsSL https://releases.herdr.dev/app/install.sh | sh`
+   (or the `.dmg` from https://herdr.dev/download/; not on Homebrew, the app updates itself).
+2. Open Herdr once, then quit it. This creates `~/.config/herdr-app` and the `herdr-app` / `hc` commands.
+3. Link the files you own from this repo into the config folder:
+   ```sh
+   ~/Documents/dotfiles/herdr-app/link.sh --dry-run   # see what it would link
+   ~/Documents/dotfiles/herdr-app/link.sh
+   ```
+   It links `settings.json`, `keys.json` (and `programs.json` if present), every
+   `layouts/*.json`, `themes/*.json` and `mods/*/` in this repo. Safe to re-run;
+   it never replaces a real file or folder.
+4. Verify: `herdr-app status` shows `"errors": []`.
+
+`settings.json` holds the look: `theme`, `colors`, `font`, `font_size`, `zoom`, sounds.
+It asks for FiraCode Nerd Font; install it from `fonts/FiraCode.zip` on a fresh machine.
+
+Adding your own layout, mod or theme: put it in `herdr-app/` (`layouts/`,
+`mods/<name>/`, `themes/`) and run `link.sh` again. To change a mod Herdr ships,
+clone it first (`herdr-app do mod.clone '{"name":"files","as":"my-files"}'`), move
+the clone into `herdr-app/mods/`, then link. The folders themselves can't be
+linked, because Herdr rebuilds `frame/`, `icons/`, `*.d.ts`, `AGENTS.md` and its
+shipped layouts, mods and themes on every start, and writes state there
+(`view.json`, `shared.json`, `data/`, `installed.json`, `window*.json`,
+`layouts/.state/`).
+
+Getting a mod from herdr.dev: copy its `mods/<name>/` folder into
+`herdr-app/mods/`, run `link.sh`, merge any `keys.json` it ships into `keys.json`,
+then check it with `herdr-app check mods/<name>`.
+
+After a Herdr update, if you have changed any key binding, run:
+```sh
+node ~/Documents/dotfiles/herdr-app/merge-keys.js
+```
+It adds new default shortcuts without touching yours.
+
 ## Neovim
 1. Installation: `brew install neovim`
 2. Create .config folder if not existing under $HOME.
