@@ -1,0 +1,5 @@
+{
+  "place": "none",
+  "title": "Spaces picker",
+  "overlay": { "kind": "popup", "at": "top", "offset": 56, "width": 780, "height": 470 }
+}

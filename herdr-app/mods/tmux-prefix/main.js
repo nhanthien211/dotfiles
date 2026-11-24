@@ -22,6 +22,7 @@ const BINDINGS = [
   ["right", "Focus right", "pane.go", { direction: "right" }, true],
   ["J", "Next space", "space.next", {}, true],
   ["K", "Previous space", "space.prev", {}, true],
+  ["s", "Spaces picker", "mod.open", { name: "spaces-picker" }],
   ["z", "Zoom pane", "pane.zoom"],
   ["d", "Minimize window", "window.minimize"],
   ...Array.from({ length: 10 }, (_, i) => [String(i), `Tab ${i === 0 ? 10 : i}`, "tab.select", { index: i === 0 ? 10 : i }]),
