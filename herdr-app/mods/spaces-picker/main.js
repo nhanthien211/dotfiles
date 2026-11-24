@@ -1,13 +1,13 @@
-// Spaces picker: the spaces half of cmd+p on its own. Type to filter spaces by
-// name, folder, branch or machine — or by the index shown on the left, where 0
-// is the first space. ↑↓ to move; the right column follows the hovered or
-// selected space and lists its tabs with agent status and program, like cmd+p.
-// Enter switches to the space. Clicking a tab goes straight to it. Opened from
-// the tmux prefix (Ctrl+Space, then s) or with
+// Spaces picker: jump to a space by its letter. Every space gets a random
+// unique letter (a–z, then A–Z) shown in a boxed chip; pressing it switches
+// there at once. ↑↓ moves the selection, Enter switches to it, and the right
+// column follows the hovered or selected space with its tabs, agent status and
+// program, like cmd+p. Clicking a tab goes straight to it. Opened from the tmux
+// prefix (Ctrl+Space, then s) or with
 // `herdr-app do mod.open --name spaces-picker`.
 
 import { View, div, svg } from "gpui-kit";
-import { v_flex, h_flex, InputState, Input, ScrollHandle } from "gpui-base";
+import { v_flex, h_flex, ScrollHandle } from "gpui-base";
 import { agents, spaces, run, theme, props, closeOverlay, shared, setShared } from "herdr";
 
 const MARK = { ansi6: "#22a99a", ansi3: "#e3814f", ansi4: "#5b8def", ansi5: "#8b7cf6", ansi2: "#3fae6a", ansi1: "#d9649a" };
@@ -35,6 +35,16 @@ function spaceColor(t, p) {
   return c.startsWith("#") ? c : (MARK[c] ?? t[c]);
 }
 
+// Jump letters: all of a–z first, then A–Z only once lowercase runs out;
+// case-sensitive, 52 spaces at most. Past that a space simply gets no letter
+// (and is still reachable with ↑↓ and Enter).
+const LOWER = [..."abcdefghijklmnopqrstuvwxyz"];
+const UPPER = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+
+// Letters last for the app session: reopening the picker shows the same ones,
+// a closed space gives its letter back, and only a mod reload reshuffles.
+const HINTS = {};
+
 // cmd+p's status glyphs: a spinner while working, ○ idle, ● done or blocked
 // (in that status's theme color), · for a tab with no agent.
 function glyph(t, st) {
@@ -44,41 +54,33 @@ function glyph(t, st) {
 
 export default class SpacesPicker extends View {
   init(_props, cx) {
-    this.filter = "";
     this.at = null;
     this.hover = null;
     this.revealed = null;
     this.scroll = ScrollHandle.new();
     this.handle = cx.focus_handle();
-    this.input = InputState.new({ placeholder: "Search spaces or type an index…" });
-    this.input.on("change", (_e, cx) => {
-      this.filter = this.input.value();
-      this.hover = null;
-      const list = this.shown();
-      const active = list.findIndex((p) => p.active);
-      this.at = active >= 0 ? active : 0;
-      cx.notify();
-    });
-    this.input.on("submit", (_e, cx) => this.open(this.shown()[this.at], cx));
-    this.input.focus();
-    cx.timer.after(600, () => this.input.focus());
+    this.handle.focus();
   }
 
   close() {
     closeOverlay(props().overlay);
   }
 
-  // Spaces whose own fields match, or the one space whose index is typed
-  // (0 is the first, the number shown on the left of each row).
-  shown() {
-    const f = this.filter.trim().toLowerCase();
-    const all = spaces();
-    if (!f) return all;
-    if (/^\d+$/.test(f)) {
-      const index = Number(f);
-      return all.filter((p) => p.index - 1 === index);
+  // One random, unused letter per space, kept for the session (a space that
+  // goes away gives its letter back). Lowercase is used up before any
+  // uppercase appears.
+  assign(list) {
+    const ids = new Set(list.map((p) => p.id));
+    for (const id of Object.keys(HINTS)) if (!ids.has(id)) delete HINTS[id];
+    const used = new Set(Object.values(HINTS));
+    const lower = LOWER.filter((c) => !used.has(c));
+    const upper = UPPER.filter((c) => !used.has(c));
+    for (const p of list) {
+      if (HINTS[p.id]) continue;
+      const pool = lower.length ? lower : upper;
+      if (!pool.length) break;
+      HINTS[p.id] = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
     }
-    return all.filter((p) => [p.name, p.folder ?? "", p.branch ?? "", p.machine ?? ""].join(" ").toLowerCase().includes(f));
   }
 
   // tab id -> the programs of the agents in it.
@@ -92,23 +94,33 @@ export default class SpacesPicker extends View {
     return out;
   }
 
-  open(space, cx) {
+  open(space) {
     if (!space) return;
     this.close();
     run("space.select", { id: space.id });
   }
 
   move(delta, cx) {
-    const list = this.shown();
+    const list = spaces();
     if (!list.length) return;
     this.at = ((this.at ?? 0) + delta + list.length) % list.length;
     this.hover = null;
     cx.notify();
   }
 
+  // The character a keypress would type, or null for a chord (so ctrl/alt/cmd
+  // combinations never jump).
+  typed(e) {
+    const m = e.modifiers;
+    if (m.control || m.alt || m.platform) return null;
+    const ch = e.key_char ?? (m.shift && e.key.length === 1 ? e.key.toUpperCase() : e.key);
+    return ch && ch.length === 1 ? ch : null;
+  }
+
   render() {
     const t = theme();
-    const list = this.shown();
+    const list = spaces();
+    this.assign(list);
     if (this.at === null || this.at >= list.length) {
       const i = list.findIndex((p) => p.active);
       this.at = i >= 0 ? i : 0;
@@ -124,6 +136,16 @@ export default class SpacesPicker extends View {
     const byTab = this.agentsByTab();
 
     const label = (text) => div().h(16).text_size(11).font_semibold().text_color(t.dim).truncate().child(text);
+
+    // The jump letter: outlined in the same accent the focused pane's border
+    // uses, so a theme or layout changes it in one place.
+    const hint = (p) => {
+      const ch = HINTS[p.id];
+      if (!ch) return null;
+      return div().size(20).flex_none().rounded(5).border_1().border_color(t.accent)
+        .flex().items_center().justify_center().text_size(11.5).font_semibold().text_color(t.accent)
+        .child(ch);
+    };
 
     const spaceRow = (p) => {
       const on = p === sel;
@@ -149,7 +171,7 @@ export default class SpacesPicker extends View {
           }
         })
         .on_click(() => this.open(p))
-        .child(div().w(13).flex_none().text_size(11).text_color(t.dim).child(String(p.index - 1)))
+        .when(Boolean(HINTS[p.id]), (el) => el.child(hint(p)))
         .child(
           div().size(18).flex_none().rounded(5).bg(spaceColor(t, p)).flex().items_center().justify_center()
             .text_size(10.5).font_bold().text_color("#ffffff").child([...p.name][0]?.toUpperCase() ?? "?"),
@@ -196,7 +218,13 @@ export default class SpacesPicker extends View {
         if (e.key === "escape") return this.close();
         if (e.key === "down") this.move(1, cx);
         else if (e.key === "up") this.move(-1, cx);
-        else return;
+        else if (e.key === "enter") this.open(sel);
+        else {
+          const ch = this.typed(e);
+          const space = ch && list.find((p) => HINTS[p.id] === ch);
+          if (!space) return;
+          this.open(space);
+        }
         cx.stop_propagation();
       })
       .child(
@@ -209,28 +237,23 @@ export default class SpacesPicker extends View {
           ),
       )
       .child(
-        h_flex().h(36).flex_none().px(10).gap(8).items_center().rounded(9).border_1().border_color(t.accent).bg(t.background)
-          .child(svg("mods/workspace-chrome/search.svg").size(15).text_color(t.dim))
-          .child(Input.new(this.input).flex_1().h_full().text_size(12.8).text_color(t.foreground)),
-      )
-      .child(
-        h_flex().h(320).min_h(0).gap(12)
+        h_flex().h(332).min_h(0).gap(12)
           .child(
             v_flex().w(300).flex_none().min_h(0).gap(6).p(8).rounded(9).border_1().border_color(t.border)
               .child(label(list.length ? `Spaces · ${list.length}` : "Spaces"))
               .child(
                 list.length
-                  ? v_flex().h(282).min_h(0).overflow_y_scrollbar().track_scroll(this.scroll).children(list.map(spaceRow))
-                  : v_flex().h(282).items_center().justify_center()
-                      .child(div().text_size(12).text_color(t.dim).child("No space matches your search")),
+                  ? v_flex().h(294).min_h(0).overflow_y_scrollbar().track_scroll(this.scroll).children(list.map(spaceRow))
+                  : v_flex().h(294).items_center().justify_center()
+                      .child(div().text_size(12).text_color(t.dim).child("No spaces")),
               ),
           )
           .child(
             v_flex().flex_1().min_w(0).min_h(0).gap(6).p(8).rounded(9).border_1().border_color(t.border)
               .child(label("Tabs"))
-              .child(v_flex().h(282).min_h(0).overflow_y_scrollbar().children(tabs.map(tabRow))),
+              .child(v_flex().h(294).min_h(0).overflow_y_scrollbar().children(tabs.map(tabRow))),
           ),
       )
-      .child(div().text_size(11).text_color(t.dim).child("↑↓ move · Enter switch space · numbers pick by index (0 first) · hover shows tabs · click a tab to open it"));
+      .child(div().text_size(11).text_color(t.dim).child("↑↓ move · Enter switch · press a space's letter to jump · hover shows tabs · click a tab to open it"));
   }
 }
